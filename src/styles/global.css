@@ -228,6 +228,49 @@ footer { background: #1a1a1a; color: white; padding: 60px 0 20px; }
     .slide-content h1 { font-size: 1.5rem; }
     .btn { padding: 10px 25px; font-size: 1rem; }
 }
+/* Article tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.95rem;
+    background-color: #fff;
+}
+
+th, td {
+    padding: 16px 20px !important; /* Increased padding for comfortable reading */
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.7;
+}
+
+th {
+    background-color: var(--brand-red);
+    color: white;
+    font-weight: bold;
+    border-bottom: 3px solid #8a1515;
+}
+
+td {
+    border-bottom: 1px solid #eee;
+    color: var(--brand-dark);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(248, 248, 248, 0.8);
+}
+
+tr:hover {
+    background-color: rgba(184, 37, 37, 0.05);
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 12px 14px !important;
+        font-size: 0.9rem;
+    }
+}
+
 /* About page banner - Office Corridor Background with semi-transparent overlay */
 .page-banner {
     position: relative;
