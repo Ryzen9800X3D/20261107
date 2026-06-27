@@ -85,7 +85,7 @@ Vera Rubin 是 NVIDIA 基於全新 **Rubin Ultra 微架構**打造的 AI 超級�
 
 Vera Rubin 不僅是 NVIDIA 的產品迭代，更是從「單晶片」邁向「超級處理器」（Super SoC）的範式轉移。隨著 FP4/FP5/FMFA 精度的引入、HBM4 記憶體的採用與雙 GPU 架構的成熟，AI 訓練的成本曲線有望進一步下修。
 
-沅品科技将持续追蹤 Rubin Ultra 平台的生態系發展，並為客戶提供最新的硬體選型建議與基礎設施規劃方案。
+沅品科技將持續追蹤 Rubin Ultra 平台的生態系發展，並為客戶提供最新的硬體選型建議與基礎設施規劃方案。
 
 ---
 
