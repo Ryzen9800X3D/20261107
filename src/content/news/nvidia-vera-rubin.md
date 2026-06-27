@@ -4,7 +4,7 @@ pubDate: 2026-06-26
 tag: "hardware"
 order: 1
 description: "NVIDIA 正式揭開 Vera Rubin 平台面紗，以雙 GPU 架構與 FMFA 精度引領下一波 AI 訓練浪潮。"
-image: "https://images.unsplash.com/photo-1555664308-0929c6e7d8f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=400&q=80"
+image: "/images/chip-nvidia.jpg"
 author: "沅品科技硬體研究團隊"
 ---
 
