@@ -1,7 +1,7 @@
 ---
 title: "NVIDIA Vera Rubin：AI 超級晶片的下一個世代革命"
 pubDate: 2026-06-26
-tag: "hardware"
+tag: "產品新知"
 order: 1
 description: "NVIDIA 正式揭開 Vera Rubin 平台面紗，以雙 GPU 架構與 FMFA 精度引領下一波 AI 訓練浪潮。"
 image: "/images/chip-nvidia.jpg"
