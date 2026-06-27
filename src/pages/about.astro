@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="關於我們 | InfoSecure 沅品科技" description="沅品科技創立於2009年，由一群專業技術團隊組成，致力於提供全方位的系統整合(SI)服務，協助企業建置完善的資訊架構。">
+    <Nav />
+    <section class="page-banner">
+        <div class="container">
+            <h1>關於我們</h1>
+            <div class="breadcrumb">
+                <a href="/">首頁</a> / 關於 InfoSecure
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>InfoSecure 沅品科技</h2>
+                    <p>沅品科技創立於 2009 年，定位為專業系統整合（SI）廠商，是由一群在資訊業服務多年的專業技術團隊所成立。我們秉持「熱情用心」、「誠懇踏實」的精神服務廣大客戶。</p>
+                    <p>為了符合客戶的多樣化需求，我們提供全方位的資訊設備整合方案。從售前的顧問諮詢服務、中期的系統設備規劃建置，到後期的售後維護管理，我們一手包辦。</p>
+                    <p>依據客戶不同的商業環境與預算，我們給予專業且彈性的規劃，協助客戶建置完善的資訊架構，進而發揮最大的營運效益，成為您最堅強的 IT 後盾。</p>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Teamwork">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding values-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">我們的服務理念</h2>
+                <p style="color: #666; max-width: 600px; margin: 0 auto;">期許成為一家提供客戶完善服務的系統整合廠商，為您解決 IT 難題。</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <span class="value-icon">🤝</span>
+                    <h3>誠懇踏實</h3>
+                    <p>以誠信為本，站在客戶的角度思考，不推銷多餘的產品，只提供最合適的解決方案。</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🛠️</span>
+                    <h3>專業技術</h3>
+                    <p>團隊擁有多年實務經驗，熟悉虛擬化、網路資安與備份架構，確保系統建置的穩定性。</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">💡</span>
+                    <h3>彈性規劃</h3>
+                    <p>不拘泥於特定品牌，依據企業規模與環境，量身打造最具效益的 IT 基礎建設。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding text-center">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">準備好升級您的資訊架構了嗎？</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">我們誠摯地希望能有機會為您服務，歡迎隨時與我們聯繫。</p>
+            <a href="/#inquiry" class="btn btn-primary">聯絡我們</a>
+        </div>
+    </section>
+    <Footer />
+</BaseLayout>

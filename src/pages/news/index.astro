@@ -1,0 +1,428 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const news = await getCollection('news');
+// 依日期排序（新的在前面）
+const sorted = news.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+function formatDate(date) {
+  const d = new Date(date);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+---
+<BaseLayout title="最新消息 | InfoSecure 沅品科技" description="掌握產業動態與最新技術資訊。">
+  <Nav />
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+    <h1>最新消息</h1>
+      <div class="breadcrumb">
+        <a href="/">首頁</a> <span>/</span> 最新消息
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <!-- Filter Buttons -->
+      <div class="filter-container">
+        <div class="filter-btn active" onclick="changeCategory('all')">全部消息</div>
+        <div class="filter-btn" onclick="changeCategory('產品新知')">產品新知</div>
+        <div class="filter-btn" onclick="changeCategory('資安趨勢')">資安趨勢</div>
+        <div class="filter-btn" onclick="changeCategory('活動消息')">活動消息</div>
+        <div class="filter-btn" onclick="changeCategory('AI知識科普')">AI知識科普</div>
+      </div>
+
+      <!-- News Grid -->
+      <div class="news-grid" id="newsGrid">
+        {sorted.map(item => (
+          <div class="news-card" data-category={item.data.tag}>
+            <div class="card-img-wrapper">
+              <img
+                src={item.data.image}
+                class="card-img"
+                alt={item.data.title}
+              />
+            </div>
+            <div class="card-content">
+              <div class="meta-info">
+                <span class="category-tag">{item.data.tag}</span>
+                <span class="date">{formatDate(item.data.pubDate)}</span>
+              </div>
+              <h3>
+                <a href={`/news/${item.slug}`}>{item.data.title}</a>
+              </h3>
+              <p>{item.data.description}</p>
+              <a href={`/news/${item.slug}`} class="btn-read-more">閱讀全文</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="paginationContainer"></div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+       :root {
+            --brand-red: #B82525;
+            --brand-dark: #333333;
+            --text-gray: #555555;
+            --bg-light: #F9F9F9;
+            --news-bg: #111;
+            --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans TC', "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--brand-dark);
+            line-height: 1.8;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+         h1, h2, h3, h4 { font-weight: 700; line-height: 1.3; }
+        a { text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+        /* --- 基礎佈局 (同步首頁) --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+       .btn-primary {
+            background-color: var(--brand-red);
+            color: white !important; 
+            box-shadow: 0 8px 20px rgba(184, 37, 37, 0.4);
+        }
+           .btn-primary:hover {
+            background-color: #8a1515;
+            transform: translateY(-2px);
+        }
+
+        /* --- Header (同步首頁) --- */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+        }
+
+              .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo-main-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img { height: 55px; display: block; }
+
+        .company-name-cn {
+            color: var(--brand-red);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            margin-left: 5px;
+        }
+
+       .nav-menu { display: flex; gap: 35px; align-items: center; }
+        .nav-menu a { 
+            color: var(--brand-dark); 
+            font-weight: 500; 
+            font-size: 1.0rem; 
+        }
+        .nav-menu a:hover { color: var(--brand-red); }
+
+        /* --- Page Hero (新聞中心風格) --- */
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .page-hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 700; }
+        .breadcrumb { font-size: 1rem; color: #ccc; }
+        .breadcrumb a { color: #fff; text-decoration: none; }
+        .breadcrumb span { margin: 0 10px; color: var(--brand-red); }
+
+        /* --- Filter Buttons --- */
+        .filter-container {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .filter-btn {
+            display: inline-block;
+            padding: 10px 28px;
+            margin: 0 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #fff;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--brand-red);
+            color: white;
+            border-color: var(--brand-red);
+            box-shadow: 0 4px 12px rgba(184, 37, 37, 0.2);
+        }
+
+        /* --- News Grid & Cards --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+            padding-bottom: 80px;
+            min-height: 600px;
+            align-content: start;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+        .news-card:hover .card-img { transform: scale(1.08); }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .category-tag {
+            color: var(--brand-red);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .date { color: #999; font-size: 0.9rem; }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+        .card-content h3 a { color: var(--brand-dark); text-decoration: none; transition: 0.3s; }
+        .card-content h3 a:hover { color: var(--brand-red); }
+
+        .card-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-read-more {
+            margin-top: auto;
+            color: var(--brand-red);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .btn-read-more:hover { gap: 10px; }
+        .btn-read-more::after { content: ' →'; margin-left: 5px; }
+
+        /* --- Pagination --- */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 100px;
+        }
+        :global(.page-num) {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+        }
+        :global(.page-num.active), :global(.page-num:hover) {
+            background: var(--brand-red);
+            color: white;
+            border-color: var(--brand-red);
+        }
+
+        /* --- Footer (同步首頁) --- */
+        footer {
+            background: var(--brand-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .footer-logo h2 { color: white; margin-bottom: 20px; }
+        .footer-col h4 { color: white; margin-bottom: 25px; font-size: 1.1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: white; text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: var(--brand-red); }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 30px; text-align: center; }
+
+        @media (max-width: 992px) {
+            .nav-menu { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .page-hero h1 { font-size: 2.2rem; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+</style>
+
+<script is:inline>
+let currentPage = 1;
+        const itemsPerPage = 6;
+        let currentCategory = 'all';
+
+        const allCards = document.querySelectorAll('.news-card'); 
+        const paginationContainer = document.getElementById('paginationContainer');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        function changeCategory(category) {
+            currentCategory = category;
+            currentPage = 1;
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(category)) btn.classList.add('active');
+            });
+            renderPage(); 
+        }
+
+        function changePage(pageNum) {
+            currentPage = pageNum;
+            renderPage();
+            window.scrollTo({
+                top: document.querySelector('.filter-container').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+
+        function renderPage() {
+            let matchedCards = [];
+            allCards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (currentCategory === 'all' || cardCat === currentCategory) matchedCards.push(card);
+            });
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            allCards.forEach(card => card.style.display = 'none');
+
+            const cardsToShow = matchedCards.slice(startIndex, endIndex);
+            cardsToShow.forEach(card => {
+                card.style.display = 'flex'; 
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transition = 'opacity 0.5s ease';
+                }, 50);
+            });
+
+            renderPagination(matchedCards.length);
+        }
+
+        function renderPagination(totalItems) {
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            if (totalPages <= 1) return;
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('div');
+                btn.classList.add('page-num');
+                btn.innerText = i;
+                if (i === currentPage) btn.classList.add('active'); 
+                btn.addEventListener('click', () => changePage(i));
+                paginationContainer.appendChild(btn);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderPage);
+</script>

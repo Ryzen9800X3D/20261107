@@ -1,0 +1,20 @@
+---
+const currentPath = Astro.url.pathname;
+---
+<header>
+    <div class="container nav-bar">
+        <div class="logo-section">
+            <a href="/" class="logo-main-link">
+                <img src="/images/icon-2.png" alt="InfoSecure Logo" class="logo-img">
+            </a>
+        </div>
+        <nav class="nav-menu">
+            <a href="/about" class={currentPath === '/about' ? 'active' : ''}>關於我們</a>
+            <a href="/#solutions">解決方案</a>
+            <a href="/#products">產品資訊</a>
+            <a href="/#cases">成功案例</a>
+            <a href="/news">最新消息</a>
+            <a href="/#inquiry" class="btn btn-primary">立即諮詢</a>
+        </nav>
+    </div>
+</header>
