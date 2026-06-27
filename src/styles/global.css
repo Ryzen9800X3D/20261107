@@ -228,11 +228,17 @@ footer { background: #1a1a1a; color: white; padding: 60px 0 20px; }
     .slide-content h1 { font-size: 1.5rem; }
     .btn { padding: 10px 25px; font-size: 1rem; }
 }
-/* About page */
+/* About page banner - Office Corridor Background */
 .page-banner {
-    background: linear-gradient(135deg, #555 0%, #444 50%, #333 100%);
+    /* Fallback background color behind the photo */
+    background-color: rgba(0, 0, 0, 0.6); 
+    /* Load local downloaded image instead of grey gradient */
+    background-image: url('/images/about-office.jpg');
+    background-size: cover;
+    background-position: center;
+    
     color: white;
-    padding: 80px 0 60px;
+    padding: 140px 0 90px; /* Increased height for better composition */
     text-align: center;
 }
 .page-banner h1 { font-size: 3rem; margin-bottom: 15px; }
