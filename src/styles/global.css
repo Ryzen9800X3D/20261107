@@ -228,10 +228,9 @@ footer { background: #1a1a1a; color: white; padding: 60px 0 20px; }
     .slide-content h1 { font-size: 1.5rem; }
     .btn { padding: 10px 25px; font-size: 1rem; }
 }
-/* About page banner - Office Corridor Background */
+/* About page banner - Office Corridor Background with semi-transparent overlay */
 .page-banner {
-    /* Fallback background color behind the photo */
-    background-color: rgba(0, 0, 0, 0.6); 
+    position: relative;
     /* Load local downloaded image instead of grey gradient */
     background-image: url('/images/about-office.jpg');
     background-size: cover;
@@ -240,6 +239,22 @@ footer { background: #1a1a1a; color: white; padding: 60px 0 20px; }
     color: white;
     padding: 140px 0 90px; /* Increased height for better composition */
     text-align: center;
+}
+
+/* Semi-transparent dark overlay on top of the photo */
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% transparent black layer */
+    z-index: 1;
+}
+
+/* Ensure heading and breadcrumb are above the overlay */
+.page-banner h1,
+.page-banner .breadcrumb {
+    position: relative;
+    z-index: 2;
 }
 .page-banner h1 { font-size: 3rem; margin-bottom: 15px; }
 .page-banner .breadcrumb { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
