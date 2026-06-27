@@ -1,67 +1,40 @@
+---
+interface Props {
+  articles: {
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      pubDate: string;
+      image?: string;
+    };
+  }[];
+}
+const { articles } = Astro.props;
+---
+
 <section class="hero-slider-section" id="heroSlider">
-    <div class="slide active">
-        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-content container">
-            <h1>硬體算力全解析：從 FP64 到 INT8，如何挑選最適合 AI 的運算核心？</h1>
-            <p>在進入 AI 硬體開發的世界時，除了聽過顯卡型號，最常聽到的就是 FP64、FP32、FP16 這些專業術語。它們代表的是「運算精度」。精度越高，計算出的數值越精確，但同時也會消耗更多的顯存頻寬與電力。</p>
-            <a href="/news/ai-wiki" class="btn btn-primary">了解更多</a>
-        </div>
+  {articles.map((article, i) => (
+    <div class={`slide${i === 0 ? ' active' : ''}`}>
+      <div
+        class="slide-bg"
+        style={`background-image: url('${article.data.image ? article.data.image + '?auto=format&fit=crop&w=1920&q=80' : "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1920&q=80"}');`}
+      ></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content container">
+        <h1>{article.data.title}</h1>
+        <p>{article.data.description}</p>
+        <a href={`/news/${article.slug}`} class="btn btn-primary">了解更多</a>
+      </div>
     </div>
-    <div class="slide">
-        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-content container">
-            <h1>從對話到行動：AI Agent 時代的生存法則與學習路徑</h1>
-            <p>AI 的演進正處於關鍵的分水嶺。過去我們將 AI 視為「聊天機器人」，現在我們必須將其視為「數位代理人」(AI Agent)。</p>
-            <a href="/news/ai-agent" class="btn btn-primary">了解更多</a>
-        </div>
-    </div>
-    <div class="slide">
-        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-content container">
-            <h1>VMWARE太貴?試試VergeIO虛擬化解決方案</h1>
-            <p>VergeIO 助您用一半的預算，換取兩倍的效能與絕對的自主權。</p>
-            <a href="/news/vergeio" class="btn btn-primary">了解更多</a>
-        </div>
-    </div>
-    <div class="slide">
-        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-content container">
-            <h1>駕馭數據洪流，強化運算核心</h1>
-            <p>沅品科技提供全方位 IT 基礎架構解決方案。從高效能伺服器、網路架構到 Scale-out 儲存，協助企業在資料爆炸時代穩健成長。</p>
-            <a href="/news/intro" class="btn btn-primary">探索解決方案</a>
-        </div>
-    </div>
-    <div class="slide">
-        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-content container">
-            <h1>零信任架構 (Zero Trust) 為何成為主流？永不信任，始終驗證</h1>
-            <p>過去，企業的資安防護像是一座「城堡」，認為只要守好城門（防火牆），內部就是安全的。然而，隨著雲端服務普及與遠距辦公興起，這種「邊界防護」的概念已經過時。</p>
-            <a href="/news/zerotrust" class="btn btn-primary">了解更多</a>
-        </div>
-    </div>
-    <div class="slide">
-        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-content container">
-            <h1>勒索病毒防禦最後一道防線</h1>
-            <p>利用 WORM 技術與不可變更備份，為您的企業資料建立銅牆鐵壁，無懼加密威脅。</p>
-            <a href="/news/security" class="btn btn-primary">了解更多</a>
-        </div>
-    </div>
-    <div class="slider-dots">
-        <span class="dot active" data-slide="1"></span>
-        <span class="dot" data-slide="2"></span>
-        <span class="dot" data-slide="3"></span>
-        <span class="dot" data-slide="4"></span>
-        <span class="dot" data-slide="5"></span>
-        <span class="dot" data-slide="6"></span>
-    </div>
+  ))}
+  <div class="slider-dots">
+    {articles.map((_, i) => (
+      <span class={`dot${i === 0 ? ' active' : ''}`} data-slide={i + 1}></span>
+    ))}
+  </div>
 </section>
+
 <script is:inline>
 (function(){
     var slides = document.querySelectorAll('#heroSlider .slide');

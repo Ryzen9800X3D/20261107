@@ -3,10 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import HeroSlider from '../components/HeroSlider.astro';
+import { getCollection } from 'astro:content';
+
+// Get all news, sort by pubDate desc, take latest 6
+const allNews = await getCollection('news');
+const sortedNews = allNews.sort((a, b) => {
+  return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+});
+const latestNews = sortedNews.slice(0, 6);
 ---
+
 <BaseLayout title="InfoSecure 沅品科技 | 專業系統整合 SI 服務商" description="沅品科技成立於2009年，提供虛擬化建置、網路資安規劃、資料儲存備份、雲端服務及機房建置等全方位資訊解決方案。">
     <Nav />
-    <HeroSlider />
+    <HeroSlider articles={latestNews} />
 
     <section class="about-teaser-section">
         <div class="container">
@@ -120,7 +129,6 @@ import HeroSlider from '../components/HeroSlider.astro';
                         <span class="badge">Cisco</span>
                         <span class="badge">3Gen</span>
                         <span class="badge">Nutanix</span>
-                        
                         <span class="badge">Proxmox VE</span>
                     </div>
                 </div>
@@ -152,7 +160,7 @@ import HeroSlider from '../components/HeroSlider.astro';
                     <h3>網路資安規劃</h3>
                     <p>提供適用的網路拓璞、內外部與無線網路架構。建置高可用性、高安全性及高效率的網路環境。</p>
                     <div class="brand-badges">
-                        <span class="badge">Fortinet</span>                     
+                        <span class="badge">Fortinet</span>
                         <span class="badge">HPE/Aruba/Juniper</span>
                         <span class="badge">Cisco</span>
                         <span class="badge">Palo Alto Networks</span>
@@ -169,7 +177,7 @@ import HeroSlider from '../components/HeroSlider.astro';
                     <h3>資料安全及端點防護</h3>
                     <p>內外網防火牆建置、端點防護、威脅及資料過濾。給予資料適當保護，避免遭受內外威脅及外洩。</p>
                     <div class="badge-group">
-                        <span class="badge">Fortinet</span>                     
+                        <span class="badge">Fortinet</span>
                         <span class="badge">Team T5</span>
                         <span class="badge">Kaspersky</span>
                         <span class="badge">Palo Alto Networks</span>
