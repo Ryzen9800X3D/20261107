@@ -18,7 +18,7 @@ Proxmox VE 是一個免費且開源的伺服器管理平台，其核心優勢在
 *   **底層架構：** 基於穩健的 Debian GNU/Linux 系統。
 *   **雙引擎驅動：** 同時支援全虛擬化 (Full Virtualization) 與作業系統層級虛擬化 (OS-level virtualization)。
 
-## 🔹 二、核心技术亮點 💡
+## 🔹 二、核心技術亮點 💡
 
 ### 1. KVM (Kernel-based Virtual Machine) 虛機
 如同 VMware ESXi 或 Hyper-V，KVM 用於運行完整的 Guest OS（如 Windows Server, Ubuntu, CentOS）。
