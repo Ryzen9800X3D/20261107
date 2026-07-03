@@ -9,7 +9,7 @@ image: '/images/virtualization.png'
 
 # 🚀 IT 前沿觀察：Proxmox VE —— 重新定義資料中心的開源虛擬化平台
 
-> **摘要：** 在企業級虛擬化領域，**Proxmox Virtual Environment (PVE)** 正以驚人的速度崛起。作為一個基於 Debian Linux 的全功能開源平台，它將 KVM 虛機管理與 LXC/LXD 容器整合於單一介面中，為中小型企业及雲端開發者提供了媲美商業軟體的高可用解決方案。
+> **摘要：** 在企業級虛擬化領域，**Proxmox Virtual Environment (PVE)** 正以驚人的速度崛起。作為一個基於 Debian Linux 的全功能開源平台，它將 KVM 虛機管理與 LXC/LXD 容器整合於單一介面中，為中小企業及雲端開發者提供了媲美商業軟體的高可用解決方案。
 
 ## 🔹 一、什麼是 Proxmox VE？
 
