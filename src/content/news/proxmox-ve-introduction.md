@@ -4,7 +4,7 @@ pubDate: '2026-07-03'
 description: '探討 Proxmox Virtual Environment (PVE) 如何透過 KVM 與 LXC 技術，成為 VMware vSphere 的強大競爭對手。'
 tag: '產品新知'
 author: 'Ryzen AI Architect & Security Consultant'
-image: '/images/proxmox-server.jpg' 
+image: '/images/virtualization.png' 
 ---
 
 # 🚀 IT 前沿觀察：Proxmox VE —— 重新定義資料中心的開源虛擬化平台
