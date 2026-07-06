@@ -1,10 +1,10 @@
 ---
 title: "【技術前瞻】Gemma 4 與 QAT：讓 AI 在高效能與輕量化之間取得完美平衡"
 pubDate: 2026-07-06
-description: "探討 Google Gemma 4 如何透過 QAT（量化感知訓練）技術，在保持強大智能的同時實現極致輕量化，適合邊緣運算應用。"
+description: "探討 Gemma 4 的 QAT（量化感知訓練）如何讓大型語言模型在保持強大智能的同時，實現極致輕量化。適合邊緣運算應用。"
 tag: "AI知識科普"
 author: "沅品科技硬體研究團隊"
-image: "/public/images/AI.png"
+image: "https://images.unsplash.com/photo-1677442135908-2e1a1f8b3d48?auto=format&fit=crop&w=800&q=80"
 ---
 
 # Gemma 4 與 QAT：讓 AI 在高效能與輕量化之間取得完美平衡
