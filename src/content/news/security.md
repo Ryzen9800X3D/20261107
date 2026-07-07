@@ -1,7 +1,7 @@
 ---
 title: "勒索病毒攻擊再進化，備份不可變更性成關鍵"
 pubDate: 2026-04-18
-tag: "資安專欄"
+tag: "資安趨勢"
 description: "面對勒索病毒威脅，傳統備份已不足夠。了解如何透過 WORM 技術為企業資料建立最後一道防線。"
 image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&h=400&q=80"
 author: "資安技術顧問"
