@@ -2,7 +2,7 @@
 title: "QSAN XCubeNXT 全新上市：效能提升 50%，重新定義統一儲存標準"
 description: "面對現代企業資料量的爆炸性成長，儲存設備不僅需要大容量，更需要極致的效能。"
 pubDate: 2025-05-20
-tag: "產品快訊"
+tag: "產品新知"
 image: "https://raw.githubusercontent.com/kevinhsiao-cmd/infosecure/refs/heads/main/NXT8026.png"
 imageAlt: "QSAN XCubeNXT"
 ---

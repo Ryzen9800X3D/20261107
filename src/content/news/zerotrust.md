@@ -1,7 +1,7 @@
 ---
 title: "零信任架構 (Zero Trust) 為何成為主流？永不信任，始終驗證"
 pubDate: 2026-02-18
-tag: "資安趨勢"
+tag: "資安專欄"
 description: "過去的「城堡式防護」已過時，零信任的核心理念是「永不信任，始終驗證」。"
 image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1200&h=400&q=80"
 author: "沅品科技資安團隊"
