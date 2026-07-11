@@ -332,6 +332,23 @@ import Footer from '../components/Footer.astro';
     font-size: 0.95rem;
   }
 
+  /* Tablet Optimization */
+  @media (max-width: 1024px) {
+    .category-row,
+    .category-row:nth-child(even) {
+      flex-direction: column;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .category-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+    }
+    .page-hero h1 { font-size: 2.5rem; }
+    .section-title { font-size: 2rem; }
+  }
+
   @media (max-width: 768px) {
     .category-row,
     .category-row:nth-child(even) {
