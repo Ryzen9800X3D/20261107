@@ -332,21 +332,30 @@ import Footer from '../components/Footer.astro';
     font-size: 0.95rem;
   }
 
-  /* Tablet Optimization */
+  /* Tablet & Mobile Optimization */
   @media (max-width: 1024px) {
     .category-row,
     .category-row:nth-child(even) {
-      flex-direction: column;
-      gap: 30px;
+      flex-direction: column !important;
+      gap: 25px;
       margin-bottom: 60px;
     }
     .category-img {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
+        width: 100% !important;
+        height: auto !important;
+        max-height: 300px !important;
+        flex: none !important;
     }
-    .page-hero h1 { font-size: 2.5rem; }
-    .section-title { font-size: 2rem; }
+    .category-info {
+        flex: none !important;
+        width: 100% !important;
+    }
+    .category-info h3 {
+        font-size: 1.5rem;
+    }
+    .page-hero h1 { font-size: 2.2rem; }
+    .section-title { font-size: 1.8rem; }
+    .section-subtitle { font-size: 1rem; margin-bottom: 40px; }
   }
 
   @media (max-width: 768px) {
