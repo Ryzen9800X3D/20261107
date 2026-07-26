@@ -98,8 +98,8 @@ AMD 更宣布與 OpenAI 合作，將 OpenAI 的 Triton 編譯框架整合至 AMD
 | FP8 訓練效能 | **1.4 exaFLOPS** | — |
 | FP32 SGEMM（總） | ~57,600 TFLOPS（估算） | 28,800 TFLOPS |
 | FP64 DGEMM（總） | ~28,800 TFLOPS（估算） | 14,400 TFLOPS |
-| 互連技術 | NVLink 5（每卡 3.6 TB/s） | NVLink 6（每卡 3.6 TB/s） |
-| 總互連頻寬 | 260 TB/s | 260 TB/s |
+| 互連技術 | Infinity Fabric（896 GB/s 雙向每卡對卡） | NVLink 6（3.6 TB/s 每卡） |
+| 總互連頻寬 | ~128 TB/s（估算） | 260 TB/s |
 | 散熱方式 | 液冷散熱 | 液冷散熱 |
 | 每美元推理 Token | 比競爭對手高 **30%** | — |
 
@@ -203,7 +203,7 @@ Advancing AI 2026 展現了 AMD 在代理式 AI 時代的全棧戰略——
 |-------|-------------|
 | EPYC 9006 Venice | 最高 256 核心、PCIe Gen 6、1.6 TB/s 記憶體頻寬 |
 | Instinct MI400 / MI455X | CDNA 5 / 2nm / 432 GB HBM4 / 40 PFLOPS FP4 |
-| Helios 機架 | 72 GPU / 2.9 EFLOPS FP4 / 1.4 PB/s 總頻寬 |
+| Helios 機架 | 72 GPU / 2.9 EFLOPS FP4 / Infinity Fabric / 31 TB HBM4 |
 | Ryzen AI Embedded X100 | Zen 5 / 16 核心 / 50 TOPS NPU |
 | Kria AI SOM | 234 同步 Agent / 8,000 決策/秒 |
 
