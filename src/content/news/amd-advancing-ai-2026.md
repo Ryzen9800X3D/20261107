@@ -90,15 +90,17 @@ AMD 更宣布與 OpenAI 合作，將 OpenAI 的 Triton 編譯框架整合至 AMD
 
 ### 機架級規格對比（Helios 72-GPU vs Vera Rubin NVL72）
 
-| 規格項目 | AMD Helios (72× MI455X) | NVIDIA Vera Rubin NVL72 (72× R200) |
-|---------|------------------------|-----------------------------------|
-| GPU 總數量 | 72 張 | 72 張 |
-| 總 HBM4 記憶體 | **31.1 TB** | **20.7 TB** |
-| 總記憶體頻寬 | **1.7 PB/s**（≈1,679 TB/s） | **~1,580 TB/s** |
-| FP4 推論效能 | **2.9 exaFLOPS** | **3.6 exaFLOPS** |
-| FP8 訓練效能 | **1.4 exaFLOPS** | **1.26 exaFLOPS** |
-| FP32 SGEMM（總） | ~57,600 TFLOPS（估算） | 28,800 TFLOPS |
-| FP64 DGEMM（總） | ~177 TFLOPS | 14,400 TFLOPS |
+|| 規格項目 | AMD Helios (72× MI455X) | NVIDIA Vera Rubin NVL72 (72× R200) |
+||---------|------------------------|-----------------------------------|
+|| GPU 總數量 | 72 張 | 72 張 |
+|| 總 HBM4 記憶體 | **31.1 TB** | **20.7 TB** |
+|| 總記憶體頻寬 | **1.7 PB/s**（≈1,679 TB/s） | **~1,580 TB/s** |
+|| FP4 推論效能 | **2.9 exaFLOPS** | **3.6 exaFLOPS** |
+|| FP8 訓練效能 | **1.4 exaFLOPS** | **1.26 exaFLOPS** |
+|| FP32 SGEMM（含 Tensor Core） | ~35,000 TFLOPS（估算） | **28,800 TFLOPS** |
+|| FP32 Dense（純向量） | ~11,326 TFLOPS | 9,360 TFLOPS |
+|| FP64 DGEMM（含 Tensor Core） | ~1,060 TFLOPS（估算） | **14,400 TFLOPS** |
+|| FP64 Dense（純向量） | ~177 TFLOPS | 2,400 TFLOPS |
 | 互連技術 | UALink over Ethernet (UALoE) | NVLink 6（3.6 TB/s 每卡） |
 | 總互連頻寬 | **260 TB/s scale-up + 43 TB/s scale-out** | **260 TB/s scale-up** |
 | 散熱方式 | 液冷散熱 | 液冷散熱 |
@@ -110,7 +112,7 @@ AMD 更宣布與 OpenAI 合作，將 OpenAI 的 Triton 編譯框架整合至 AMD
 - **FP4 推論性能差距縮小：** Vera Rubin NVL72 以 3.6 exaFLOPS 領先 AMD Helios 的 2.9 exaFLOPS，差距約 24%。相較於前代 Blackwell（B200）與 MI300X 之間超過 50% 的差距，AMD 已大幅縮小性能落差。
 - **FP8 訓練優勢：** AMD Helios 提供 1.4 exaFLOPS FP8 訓練效能，略高於 Vera Rubin NVL72 的 1.26 exaFLOPS（約 11% 領先），在 FP8 訓練場景中具備微弱優勢。
 - **互連頻寬優勢：** Helios 採用 UALink over Ethernet (UALoE) 架構，scale-up 頻寬達 **260 TB/s**，與 NVLink 6 持平；此外還有額外的 **43 TB/s scale-out bandwidth** 連接至資料中心其他節點，比 Vera Rubin NVL72 多出約 50% 的 scale-out 頻寬，在分布式訓練中具備顯著優勢。
-- **FP64 科學運算：** Vera Rubin NVL72 在 FP64 雙精度上達 14,400 TFLOPS，遠勝 Helios 的 ~177 TFLOPS。MI455X 定位為 AI-Dominant GPU，FP64 僅維持 1:64 比率（每卡 2.458 TFLOPS），適合傳統 HPC 需求者可考慮 AMD MI430X 系列（>200 TFLOPS FP64）。
+- **科學運算對比：** NVIDIA Vera Rubin NVL72 在傳統 HPC 領域仍具壓倒性優勢——FP64 DGEMM（含 Tensor Core）達 14,400 TFLOPS（Helios 約 ~1,060 TFLOPS），FP64 Dense 純向量亦達 2,400 TFLOPS（Helios ~177 TFLOPS）。MI455X 定位為 AI-Dominant GPU，若需雙精度算力可考慮 AMD MI430X 系列（>200 TFLOPS FP64）。
 
 ### AMD 的差異化策略
 
