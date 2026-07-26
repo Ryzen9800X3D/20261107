@@ -25,7 +25,7 @@ Vera Rubin 是 NVIDIA 基於全新 **Rubin Ultra 微架構**打造的 AI 超級�
 | **記憶體類型** | HBM4 (8-Hi / 12-Hi) |
 | **記憶體容量** | 288 GB / 384 GB+ per SoC |
 | **AI 精度** | FP4 / FP5、FMFA（Flexible Mixed-Fixed-point Arithmetic）、INT4 |
-| **互連線路** | NVLink-C2C @ 7.68 Tb/s per direction |
+| **互連線路** | NVLink-C2C（雙向高達 1.8 TB/s ~ 3.6 TB/s） |
 | **TDP** | 約 1,500W（每顆 SoC） |
 | **製程節點** | TSMC N3（第三代奈米製程） |
 | **搭配 CPU** | Vera CPU（下一代 ARM 架構） |
@@ -44,14 +44,14 @@ Vera Rubin 是 NVIDIA 基於全新 **Rubin Ultra 微架構**打造的 AI 超級�
 
 | 項目 | Blackwell (B200) | Vera Rubin (RUBIN Ultra) |
 |------|------------------|--------------------------|
-| 製程技術 | 台積電 4 奈米等級 (N4P) | 台積電 3 奈米等級 (N3) |
+| 製程技術 | 台積電 4 奈米等級 (N4P) | 台積電 3 奈米 (TSMC N3P) |
 | 搭配的 CPU | Grace CPU (ARM 架構) | Vera CPU（下一代 ARM 架構） |
-| GPU 數量/晶片 | 1 | 2（雙 GPU 整合） |
+| GPU 數量/晶片 | 2 個（雙 GPU 整合） | 2 個（雙 GPU 整合） |
 | CUDA Cores | ~208,000 | ~375,000 |
 | 記憶體類型 | HBM3e (8-Hi / 12-Hi) | HBM4 (預計 8-Hi / 12-Hi) |
-| 單晶片記憶體容量 | 192 GB / 288 GB | 288 GB / 384 GB+ |
+| 單晶片記憶體容量 | 192 GB / 288 GB | 288 GB（標準版） / 384 GB+（Ultra 版） |
 | AI 精度支援 | FP4 / FP8 / BF16 / INT4 | FP4 / FP5、FMFA + INT4 |
-| NVLink-C2C | N/A | 7.68 Tb/s |
+| NVLink-C2C | N/A | 1.8 TB/s ~ 3.6 TB/s（雙向） |
 | 預計量產時程 | 2024 年底至 2025 年全面量產 | 2026 年下半年至 2027 年 |
 | 主要應用場景 | LLM 推理、生成式 AI | 超大型語言模型、多模態 Agent |
 
