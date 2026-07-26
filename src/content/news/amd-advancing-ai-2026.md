@@ -96,7 +96,7 @@ AMD 更宣布與 OpenAI 合作，將 OpenAI 的 Triton 編譯框架整合至 AMD
 | 總 HBM4 記憶體 | **31.1 TB** | **20.7 TB** |
 | 總記憶體頻寬 | **1.7 PB/s**（≈1,679 TB/s） | **~1,580 TB/s** |
 | FP4 推論效能 | **2.9 exaFLOPS** | **3.6 exaFLOPS** |
-| FP8 訓練效能 | **1.4 exaFLOPS** | — |
+| FP8 訓練效能 | **1.4 exaFLOPS** | **1.26 exaFLOPS** |
 | FP32 SGEMM（總） | ~57,600 TFLOPS（估算） | 28,800 TFLOPS |
 | FP64 DGEMM（總） | ~28,800 TFLOPS（估算） | 14,400 TFLOPS |
 | 互連技術 | UALink over Ethernet (UALoE) | NVLink 6（3.6 TB/s 每卡） |
@@ -108,7 +108,7 @@ AMD 更宣布與 OpenAI 合作，將 OpenAI 的 Triton 編譯框架整合至 AMD
 
 - **記憶體容量大幅領先：** Helios 的 31.1 TB 總 HBM4 比 Vera Rubin NVL72 的 20.7 TB 多出約 **50%**。對於需要同時載入多個 Agent 模型的場景，這意味著更少的記憶體換頁與更高的並發能力。
 - **FP4 推論性能差距縮小：** Vera Rubin NVL72 以 3.6 exaFLOPS 領先 AMD Helios 的 2.9 exaFLOPS，差距約 24%。相較於前代 Blackwell（B200）與 MI300X 之間超過 50% 的差距，AMD 已大幅縮小性能落差。
-- **FP8 訓練優勢：** AMD Helios 提供 1.4 exaFLOPS FP8 訓練效能，而 NVIDIA 尚未公開 Vera Rubin 的 FP8 機架級數據，預期中兩者將處於相近水準。
+- **FP8 訓練優勢：** AMD Helios 提供 1.4 exaFLOPS FP8 訓練效能，略高於 Vera Rubin NVL72 的 1.26 exaFLOPS（約 11% 領先），在 FP8 訓練場景中具備微弱優勢。
 - **互連頻寬優勢：** Helios 採用 UALink over Ethernet (UALoE) 架構，scale-up 頻寬達 **260 TB/s**，與 NVLink 6 持平；此外還有額外的 **43 TB/s scale-out bandwidth** 連接至資料中心其他節點，比 Vera Rubin NVL72 多出約 50% 的 scale-out 頻寬，在分布式訓練中具備顯著優勢。
 - **FP32/FP64 科學運算：** 若以單卡 FP32 推算，Helios 在傳統 HPC 工作負載上可能具備優勢。
 
