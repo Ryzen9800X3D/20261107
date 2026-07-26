@@ -23,9 +23,9 @@ AMD 正式推出第 6 代 AMD EPYC™ 9006 系列伺服器處理器，內部代�
 |---------|-------------|----------------|--------|
 | 最高核心數 | 128 核心 / 256 執行緒 | 256 核心 / 512 執行緒 | 96 核心 |
 | TDP | 600W | 600W | 600W |
-| 記憶體通道 | 16 通道 MRDIMM | 16 通道 MRDIMM | — |
-| 記憶體速度 | 最高 12,800 MT/s | 最高 12,800 MT/s | — |
-| 記憶體頻寬 | **1.6 TB/s（每插槽）** | **1.6 TB/s（每插槽）** | — |
+| 記憶體通道 | 16 通道 MRDIMM | 16 通道 MRDIMM | 16 通道 MRDIMM |
+| 記憶體速度 | 最高 12,800 MT/s | 最高 12,800 MT/s | 最高 12,800 MT/s |
+| 記憶體頻寬 | **1.6 TB/s（每插槽）** | **1.6 TB/s（每插槽）** | **1.6 TB/s（每插槽）** |
 | I/O 介面 | PCIe Gen 6 | PCIe Gen 6 | PCIe Gen 6 |
 | 時脈 | — | — | 最高 5.0 GHz |
 
@@ -86,7 +86,7 @@ AMD 更宣布與 OpenAI 合作，將 OpenAI 的 Triton 編譯框架整合至 AMD
 - **記憶體容量優勢：** MI455X 的 432 GB HBM4 比 Rubin R200 的 288 GB 多出 **50%**，在處理大型語言模型（LLM）時可容納更多參數於單一 GPU 記憶體中，減少跨卡分割需求。
 - **記憶體頻寬領先：** 23.3 TB/s 對比 22 TB/s，MI455X 在資料密集型 Agentic AI 工作負載中具備更低的延遲。
 - **製程世代差異：** Rubin R200 採用 3 nm 製程，MI455X 則領先採用 2 nm，意味著後者在相同面積下能容納更多電晶體。
-- **推理運算：** Rubin R200 的 FP4 推論效能（50 PFLOPS）高於 MI455X（40 PFLOPS），但在 FP8 訓練與一般科學運算（FP32/FP64）方面，NVIDIA 仍有明顯優勢。
+- **推理運算：** Rubin R200 的 FP4 推論效能（50 PFLOPS）高於 MI455X（40 PFLOPS），且在 FP4 推理與傳統 FP32/FP64 運算上 NVIDIA 展現強勁數據；而 AMD 則靠 432 GB 大容量 HBM4 取得並發載入優勢。
 
 ### 機架級規格對比（Helios 72-GPU vs Vera Rubin NVL72）
 
@@ -206,7 +206,7 @@ Advancing AI 2026 展現了 AMD 在代理式 AI 時代的全棧戰略——
 | Instinct MI400 / MI455X | CDNA 5 / 2nm / 432 GB HBM4 / 40 PFLOPS FP4 |
 | Helios 機架 | 72 GPU / 2.9 EFLOPS FP4 / Infinity Fabric / 31 TB HBM4 |
 | Ryzen AI Embedded X100 | Zen 5 / 16 核心 / 50 TOPS NPU |
-| Kria AI SOM | 234 同步 Agent / 8,000 決策/秒 |
+| Kria AI SOM | 234 同步 Agent（輕量 SLM 框架）/ 8,000 決策/秒 |
 
 從底層晶片（EPYC Venice、MI455X CDNA 5）、機櫃級系統（Helios）到邊緣運算（Ryzen AI Embedded、Kria），再加上 ROCm 生態系與 OpenAI、Microsoft 等關鍵合作夥伴的深化協作，AMD 正以完整的產品矩陣挑戰 AI 運算市場的格局。
 
