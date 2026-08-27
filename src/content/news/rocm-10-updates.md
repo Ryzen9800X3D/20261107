@@ -3,7 +3,7 @@ title: "AMD ROCm 10.0 深度解析：從 7.14 到 10.0 的架構轉型與實務�
 pubDate: 2026-08-27
 tag: "產品新知"
 description: "AMD ROCm 10.0.0 於 2026 年 8 月 26 日發布，標誌著 TheRock 構建系統全面接管後的第一個 major release。本文深度解析所有新功能、硬體支援、Breaking Changes、升級路徑與實務建議。"
-image: "/images/rocm-10-updates/rocm-stack.png"
+image: "/images/rocm-10-updates/rocm-sdk-arch.png"
 author: "沅品科技硬體研究團隊"
 ---
 
@@ -27,7 +27,7 @@ AMD ROCm 在 2026 年下半年經歷重大版本躍遷。從 7.14 的 TheRock �
 ### 定位
 7.14 是「最後一代舊架構」與「新 TheRock 平台」的過渡版本，官方建議 7.2 以下用戶遷移至此。
 
-![ROCm 7.14 TheRock 構建系統](/images/rocm-10-updates/therock-diagram.png)
+![ROCm 7.14 TheRock 構建系統](/images/rocm-10-updates/rocm-ontology.png)
 
 *圖 1：ROCm 7.14 導入 TheRock 構建系統，標誌著模組化架構的開始*
 
@@ -39,7 +39,7 @@ AMD ROCm 在 2026 年下半年經歷重大版本躍遷。從 7.14 的 TheRock �
 - 從 7.x 直接跳到 **10.0**，代表 TheRock 構建系統全面接管後的**第一個正式 major release**
 - AMD 宣布改為 **每六週** 發布新功能的節奏（不再季度發布）
 
-![ROCm 軟體堆疊架構](/images/rocm-10-updates/rocm-stack.png)
+![ROCm 軟體堆疊架構](/images/rocm-10-updates/rocm-sdk-arch.png)
 
 *圖 2：ROCm 10.0 的完整軟體堆疊，涵蓋從硬體到應用層的完整支援*
 
