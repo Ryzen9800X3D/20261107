@@ -1,7 +1,7 @@
 ---
 title: "從對話到行動：AI Agent 時代的生存法則與學習路徑"
 pubDate: 2026-05-01
-tag: "AI知識科普"
+tag: "AI知識"
 description: "AI 的演進正處於關鍵分水嶺，從純文字生成轉向自主任務執行的技術革命。"
 image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&h=400&q=80"
 author: "沅品科技 AI 研究團隊"

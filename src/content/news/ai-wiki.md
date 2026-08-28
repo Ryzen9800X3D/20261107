@@ -1,7 +1,7 @@
 ---
 title: "硬體算力全解析：從 FP64 到 INT8，如何挑選最適合 AI 的運算核心？"
 pubDate: 2026-05-01
-tag: "AI知識科普"
+tag: "AI知識"
 description: "FP64、FP32、FP16、INT8 這些專業術語代表什麼？理解運算精度，是優化 AI 模型效能的第一步。"
 image: "/images/AI.png"
 author: "沅品科技 技術專家小組"

@@ -1,7 +1,7 @@
 ---
 title: "AMD ROCm 10.0 深度解析：從 7.14 到 10.0 的架構轉型與實務指南"
 pubDate: 2026-08-27
-tag: "AI知識科普"
+tag: "AI知識"
 description: "AMD ROCm 10.0.0 於 2026 年 8 月 26 日發布，標誌著 TheRock 構建系統全面接管後的第一個 major release。本文深度解析所有新功能、硬體支援、Breaking Changes、升級路徑與實務建議。"
 image: "/images/rocm-10-updates/rocm-logo.png"
 author: "沅品科技硬體研究團隊"
