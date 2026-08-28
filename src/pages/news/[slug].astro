@@ -73,17 +73,49 @@ function formatDate(date: Date) {
 </BaseLayout>
 
 <script>
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTop?.classList.add('show');
-    } else {
-      backToTop?.classList.remove('show');
-    }
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTop?.classList.add('show');
+  } else {
+    backToTop?.classList.remove('show');
+  }
+});
+backToTop?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Code block copy button
+document.addEventListener('DOMContentLoaded', () => {
+  const codeBlocks = document.querySelectorAll('.article-content pre');
+  codeBlocks.forEach(pre => {
+    // Skip if already has copy button
+    if (pre.querySelector('.copy-btn')) return;
+      
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-btn';
+    copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    copyBtn.title = '複製程式碼';
+      
+    pre.style.position = 'relative';
+    pre.appendChild(copyBtn);
+      
+    copyBtn.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.textContent || pre.textContent;
+      try {
+        await navigator.clipboard.writeText(code);
+        copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        console.error('複製失敗:', err);
+      }
+    });
   });
-  backToTop?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+});
 </script>
 
 <style>
@@ -317,5 +349,33 @@ function formatDate(date: Date) {
     .article-footer-nav { flex-direction: column; text-align: center; }
     .back-link { order: 2; }
     .btn-primary { width: 100%; order: 1; }
+  }
+
+  /* Code block copy button */
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .copy-btn:hover {
+    background: #B82525;
+    color: white;
+    border-color: #B82525;
+  }
+  .copy-btn.copied {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
   }
 </style>
