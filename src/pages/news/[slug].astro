@@ -95,73 +95,183 @@ document.addEventListener('DOMContentLoaded', () => {
     const code = pre.querySelector('code')?.textContent || pre.textContent;
     const lines = code.split('\n');
     
+    // Get language from class
+    const langClass = Array.from(pre.classList).find(c => c.startsWith('language-')) || 'bash';
+    const lang = langClass.replace('language-', '').toUpperCase();
+    
     // Clear existing content
     pre.innerHTML = '';
     pre.style.position = 'relative';
-    pre.style.paddingTop = '10px';
+    pre.style.paddingTop = '0';
+    pre.style.borderRadius = '12px';
+    pre.style.overflow = 'hidden';
+    pre.style.border = '1px solid rgba(255,255,255,0.08)';
+    pre.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4)';
+    
+    // Create title bar
+    const titleBar = document.createElement('div');
+    titleBar.className = 'code-title-bar';
+    titleBar.style.cssText = `
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    `;
+    
+    // Left side: dots + language
+    const leftSide = document.createElement('div');
+    leftSide.style.cssText = 'display: flex; align-items: center; gap: 12px;';
+    
+    // Colored dots
+    const dots = document.createElement('div');
+    dots.style.cssText = 'display: flex; gap: 8px;';
+    ['red', 'yellow', 'green'].forEach(color => {
+      const dot = document.createElement('div');
+      dot.style.cssText = `
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: ${color === 'red' ? '#FF5F56' : color === 'yellow' ? '#FFBD2E' : '#27C93F'};
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
+      `;
+      dots.appendChild(dot);
+    });
+    
+    // Language label
+    const langLabel = document.createElement('span');
+    langLabel.style.cssText = `
+      color: rgba(255, 255, 255, 0.5);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    `;
+    langLabel.textContent = lang;
+    
+    leftSide.appendChild(dots);
+    leftSide.appendChild(langLabel);
+    
+    // Right side: copy all button
+    const allCopyBtn = document.createElement('button');
+    allCopyBtn.className = 'all-copy-btn';
+    allCopyBtn.title = '複製全部';
+    allCopyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    allCopyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code);
+        allCopyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#27C93F" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+        setTimeout(() => {
+          allCopyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+        }, 2000);
+      } catch (err) {
+        console.error('複製失敗:', err);
+      }
+    });
+    
+    titleBar.appendChild(leftSide);
+    titleBar.appendChild(allCopyBtn);
     
     // Create container for lines
     const linesContainer = document.createElement('div');
     linesContainer.className = 'code-lines';
-    pre.appendChild(linesContainer);
+    linesContainer.style.cssText = 'padding: 12px 16px; overflow-x: auto;';
     
     // Create each line with copy button
     lines.forEach((line, index) => {
       const lineDiv = document.createElement('div');
       lineDiv.className = 'code-line';
+      lineDiv.style.cssText = `
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 2px 8px;
+        border-radius: 6px;
+        transition: all 0.15s ease;
+        min-height: 24px;
+        position: relative;
+      `;
       
+      // Line number
+      const lineNum = document.createElement('span');
+      lineNum.style.cssText = `
+        color: rgba(255, 255, 255, 0.2);
+        font-family: 'SF Mono', 'Fira Code', monospace;
+        font-size: 12px;
+        min-width: 24px;
+        text-align: right;
+        user-select: none;
+        flex-shrink: 0;
+      `;
+      lineNum.textContent = index + 1;
+      
+      // Line content
       const lineContent = document.createElement('span');
       lineContent.className = 'code-line-content';
       lineContent.textContent = line;
-      lineContent.style.whiteSpace = 'pre';
+      lineContent.style.cssText = `
+        flex: 1;
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        color: inherit;
+        white-space: pre;
+      `;
       
+      // Copy button
       const copyBtn = document.createElement('button');
       copyBtn.className = 'line-copy-btn';
       copyBtn.title = '複製此行';
+      copyBtn.style.cssText = `
+        opacity: 0;
+        background: transparent;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.3);
+        transition: all 0.15s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 4px;
+      `;
       copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
       
       copyBtn.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(line);
-          copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
-          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#27C93F" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
           setTimeout(() => {
             copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-            copyBtn.classList.remove('copied');
           }, 2000);
         } catch (err) {
           console.error('複製失敗:', err);
         }
       });
       
+      // Hover effects
+      lineDiv.addEventListener('mouseenter', () => {
+        lineDiv.style.background = 'rgba(255, 255, 255, 0.04)';
+        copyBtn.style.opacity = '1';
+        copyBtn.style.color = 'rgba(255, 255, 255, 0.6)';
+      });
+      lineDiv.addEventListener('mouseleave', () => {
+        lineDiv.style.background = 'transparent';
+        copyBtn.style.opacity = '0';
+        copyBtn.style.color = 'rgba(255, 255, 255, 0.3)';
+      });
+      
+      lineDiv.appendChild(lineNum);
       lineDiv.appendChild(lineContent);
       lineDiv.appendChild(copyBtn);
       linesContainer.appendChild(lineDiv);
     });
     
-    // Add overall copy button for entire block
-    const allCopyBtn = document.createElement('button');
-    allCopyBtn.className = 'all-copy-btn';
-    allCopyBtn.title = '複製全部程式碼';
-    allCopyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-    allCopyBtn.style.position = 'absolute';
-    allCopyBtn.style.top = '8px';
-    allCopyBtn.style.right = '8px';
-    pre.appendChild(allCopyBtn);
-    
-    allCopyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(code);
-        allCopyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
-        allCopyBtn.classList.add('copied');
-        setTimeout(() => {
-          allCopyBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-          allCopyBtn.classList.remove('copied');
-        }, 2000);
-      } catch (err) {
-        console.error('複製失敗:', err);
-      }
-    });
+    pre.appendChild(titleBar);
+    pre.appendChild(linesContainer);
   });
 });
 </script>
@@ -315,17 +425,19 @@ document.addEventListener('DOMContentLoaded', () => {
   .article-content :global(pre) {
     background: #1e1e1e;
     color: #d4d4d4;
-    padding: 16px 20px;
-    border-radius: 8px;
-    overflow-x: auto;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
     margin: 24px 0;
     font-size: 0.9rem;
     line-height: 1.6;
     position: relative;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
 
   .article-content :global(pre code) {
-    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
     font-size: 0.9rem;
     background: none;
     padding: 0;
