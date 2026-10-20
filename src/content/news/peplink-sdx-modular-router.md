@@ -13,6 +13,8 @@ Peplink SDX 是一款專為中大型企業分支機構設計的模組化 SD-WAN 
 
 SDX 提供高达 12Gbps 的雙向傳輸速度，最高可支援 2000 名使用者同時連線，適合對頻寬與穩定性有高要求的企業環境。
 
+**沅品科技現已引進 Peplink SDX 全系列產品**，提供完整型號規格、FlexModule 擴充模組（4G/5G LTE）與專業安裝服務，歡迎洽詢報價。
+
 ![Peplink SDX 產品外觀](/images/peplink-sdx/sdx-main.jpg)
 
 ![Peplink SDX 端口配置](/images/peplink-sdx/sdx-ports.jpg)
@@ -107,7 +109,7 @@ SDX 支援多種網路管理與負載平衡模式：
 
 Peplink SDX 以其模組化設計、12Gbps 高頻寬、以及 SpeedFusion 頻寬聚合技術，為中大型企業提供了一個靈活且高效的網路解決方案。其 FlexModule 擴充架構讓企業可隨著技術發展逐步升級，無需一次性投入大量資金，是未來導向的企業網路投資選擇。
 
-對於正在尋找 SD-WAN 路由器、需要多 WAN 聚合、或計劃升級 5G 行動網路的企業而言，Peplink SDX 值得納入評估清單。
+對於正在尋找 SD-WAN 路由器、需要多 WAN 聚合、或計劃升級 5G 行動網路的企業而言，Peplink SDX 值得納入評估清單。**沅品科技現貨供應 Peplink SDX 全系列型號**，包含 SDX-BASE、SDX-PRO、SDX-MAX 等規格，並提供 4G/5G FlexModule 擴充模組、天線配件與專業安裝服務。歡迎來電或來信洽詢最新報價與庫存狀況。
 
 ---
 
