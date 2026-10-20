@@ -32,8 +32,6 @@ SDX 提供高达 12Gbps 的雙向傳輸速度，最高可支援 2000 名使用�
 | **建議使用者數** | 500-2000 人 |
 | **路由器傳輸速度** | 12 Gbps |
 
-![Peplink SDX 端口配置](/images/peplink-sdx/sdx-ports.jpg)
-
 ## FlexModule 模組化設計
 
 SDX 的最大亮點在於其 FlexModule 擴充模組架構。企業可根據需求選擇安裝 4G LTE 或 5G LTE 模組，實現行動網路的靈活升級。這種設計讓企業無需更換整台路由器，即可將網路從 4G 升級至 5G，大幅降低長期投資成本。
