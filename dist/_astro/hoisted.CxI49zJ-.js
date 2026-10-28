@@ -1,0 +1,1 @@
+import"./hoisted.D7EsErFi.js";const e=document.querySelector(".inquiry-form");e?.addEventListener("submit",t=>{t.preventDefault();const r=new FormData(e),o=Object.fromEntries(r.entries());console.log("Form submitted:",o),alert("感謝您的諮詢！我們將儘快與您聯繫。"),e.reset()});

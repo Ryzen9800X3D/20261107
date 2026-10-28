@@ -1,7 +1,0 @@
-{
-  "name": "infosecure-astro",
-  "compatibility_date": "2024-11-06",
-  "assets": {
-    "directory": "./dist"
-  }
-}

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 桃園三日兩夜：復興區山林瀑布與楊梅茶園的秋日之旅 11/07–11/09</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --ink:#1f2a24; --paper:#f7f5ee; --card:#ffffff; --line:#e4e0d2;
+ --green:#2e6e52; --green2:#1e4d38; --gold:#c8963e; --red:#b23a2e;
+ --shadow:0 2px 12px rgba(31,42,36,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+.container{max-width:980px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(247,245,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:980px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-family:'Noto Serif TC',serif;font-weight:900;color:var(--green2);white-space:nowrap;font-size:16px}
+.nav a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 10px;border-radius:99px;white-space:nowrap}
+.nav a:hover{background:#ece5d4}
+.hamburger{display:none;position:fixed;top:58px;right:16px;z-index:60;width:44px;height:44px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+.drawer-overlay{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s ease}
+.drawer-overlay.open{display:block;opacity:1}
+.drawer{position:fixed;top:0;right:-280px;width:280px;height:100%;background:var(--card);z-index:100;box-shadow:-4px 0 20px rgba(0,0,0,.15);transition:right .3s ease;padding:80px 20px 20px;overflow-y:auto}
+.drawer.open{right:0}
+.drawer a{display:block;padding:14px 16px;color:var(--ink);text-decoration:none;font-size:15px;border-radius:10px;margin-bottom:4px}
+.drawer a:hover{background:#efe8da}
+.drawer .ddate{float:right;font-size:12px;color:#8a8375;font-weight:600;background:#f3ede1;padding:2px 8px;border-radius:99px}
+.drawer .close-btn{position:absolute;top:16px;right:16px;width:36px;height:36px;border:none;background:none;font-size:24px;cursor:pointer;color:var(--ink)}
+
+/* hero */
+.hero{background:linear-gradient(135deg,#1e4d38 0%,#2e6e52 55%,#4c8a5f 100%);color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url('https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/%E6%9D%B1%E7%9C%BC%E5%B1%B1_%287360114734%29.jpg/960px-%E6%9D%B1%E7%9C%BC%E5%B1%B1_%287360114734%29.jpg') center/cover;opacity:.22;mix-blend-mode:luminosity}
+.hero .container{position:relative}
+.hero .kicker{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:4px 14px;border-radius:99px;font-size:13px;letter-spacing:2px;margin-bottom:18px}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:38px;font-weight:900;line-height:1.3;margin-bottom:14px}
+.hero p.sub{font-size:16px;max-width:720px;opacity:.95}
+.hero .stats{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.hero .stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:10px 18px;font-size:14px}
+.hero .stat b{display:block;font-size:18px;font-family:'Noto Serif TC',serif}
+
+/* section */
+section{padding:48px 0}
+.sec-title{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.sec-title .no{font-family:'Noto Serif TC',serif;font-size:34px;font-weight:900;color:var(--green);opacity:.45;line-height:1}
+.sec-title h2{font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:var(--green2)}
+.sec-sub{color:#6c7a70;margin-bottom:24px;font-size:14.5px}
+
+/* day card */
+.day{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);margin-bottom:34px;overflow:hidden}
+.day-head{position:relative;height:220px}
+.day-head img{width:100%;height:100%;object-fit:cover;display:block}
+.day-head .info{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,40,30,.15) 0%,rgba(20,40,30,.78) 100%);display:flex;align-items:flex-end;padding:18px 22px;color:#fff}
+.day-head .date{font-size:13px;letter-spacing:1.5px;opacity:.92}
+.day-head h3{font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;margin-top:2px}
+.day-head .tagline{font-size:13px;opacity:.9;margin-top:4px}
+.day-body{padding:20px 22px}
+.route-line{background:#f2efe4;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:10px 16px;font-size:13.5px;color:#4d5a51;margin-bottom:18px}
+ul.timeline{list-style:none}
+ul.timeline li{display:grid;grid-template-columns:118px 1fr;gap:14px;padding:13px 0;border-bottom:1px dashed var(--line)}
+ul.timeline li:last-child{border-bottom:none}
+.tm{font-weight:800;color:var(--green2);font-size:14px;white-space:nowrap;padding-top:2px}
+.tm small{display:block;font-weight:500;color:#8a948c;font-size:11.5px}
+.what{font-size:15px}
+.what .cat{display:inline-block;font-size:11.5px;font-weight:700;color:#fff;border-radius:99px;padding:1px 10px;margin-right:8px;vertical-align:2px}
+.cat.hike{background:var(--green)}
+.cat.food{background:var(--gold)}
+.cat.rest{background:#5b7fa6}
+.cat.shot{background:#9a6fb8}
+.cat.drive{background:#7d8a80}
+.cat.backup{background:var(--red)}
+.addr{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#2e6e52,#1e4d38);color:#fff;border:none;border-radius:24px;padding:8px 18px;font-size:13px;cursor:pointer;box-shadow:0 2px 8px rgba(46,110,82,.3);margin-top:8px;max-width:100%;text-decoration:none;transition:all .2s ease}
+.addr:hover{background:linear-gradient(135deg,#1e4d38,#153a2a);box-shadow:0 4px 12px rgba(46,110,82,.4);transform:translateY(-1px)}
+.addr .pin{font-size:18px;line-height:1}
+.what a{color:#2e6e52;text-decoration:none;font-weight:600}
+.what a:hover{text-decoration:underline}
+.day .addr a{color:#fff;text-decoration:none;font-weight:600}
+.day .addr a:hover{text-decoration:underline}
+.foods{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:8px}
+.foodcard{background:#faf7ef;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px}
+.foodcard .fname{font-weight:800;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.foodcard .fname a{color:var(--green2);text-decoration:none}
+.foodcard .fname a:hover{text-decoration:underline}
+.stars{color:var(--gold);font-size:12px;font-weight:700;white-space:nowrap}
+.foodcard .faddr{color:#8a948c;font-size:12px;margin-top:4px}
+.foodcard .fdesc{color:#5d6a61;font-size:12.5px;margin-top:4px}
+.tip{margin-top:16px;background:#fff8ea;border:1px solid #f0dfb8;border-radius:12px;padding:12px 16px;font-size:13.5px;color:#6b5a2e}
+.tip b{color:#8f6f1f}
+
+/* day switcher */
+.day-switch{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.day-switch .sw-btn{padding:6px 14px;border-radius:99px;border:2px solid var(--green);background:var(--card);color:var(--green2);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s ease}
+.day-switch .sw-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.day-switch .sw-btn.alt{border-color:var(--red);color:var(--red)}
+.day-switch .sw-btn.alt.active{background:var(--red);color:#fff;border-color:var(--red)}
+.day-switch .sw-icon{font-size:14px;margin-left:4px}
+/* backup view styles */
+.day.backup-mode .route-line{border-left-color:var(--red);background:#fff5f5}
+.day.backup-mode .tip{background:#fff5f5;border-color:#f5c6c0;color:var(--red)}
+.day.backup-mode .tip b{color:var(--red)}
+
+/* backup section */
+.backup-toggle{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:6px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;transition:all .2s ease}
+.backup-toggle:hover{background:#9a2f25}
+.backup-box{display:none;background:#fff5f5;border:2px solid #f5c6c0;border-radius:16px;padding:18px;margin-top:12px}
+.backup-box.show{display:block}
+.backup-box h4{font-size:15px;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.backup-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.backup-table th{background:#fef2f2;color:var(--red);padding:8px 12px;text-align:left;font-weight:700;border-bottom:2px solid #f5c6c0}
+.backup-table td{padding:8px 12px;border-bottom:1px solid #f0e0dc;vertical-align:top}
+.backup-table tr:last-child td{border-bottom:none}
+.backup-table .orig{color:#6c7a70}
+.backup-table .alt{color:var(--red);font-weight:600}
+.backup-route{margin-top:14px;background:#fef9f0;border:1px solid #f0dfb8;border-radius:10px;padding:12px 16px;font-size:13px;color:#6b5a2e}
+.backup-route b{color:#8f6f1f}
+
+/* emergency */
+.emergency{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:26px;margin-bottom:34px}
+.emergency h3{font-family:'Noto Serif TC',serif;font-size:20px;color:var(--green2);margin-bottom:12px}
+.emergency table{width:100%;border-collapse:collapse;font-size:13.5px}
+.emergency th{background:#f7f5ee;padding:8px 12px;text-align:left;font-weight:700;border-bottom:2px solid var(--line)}
+.emergency td{padding:8px 12px;border-bottom:1px solid var(--line)}
+
+
+/* food list */
+.food-day{margin-bottom:26px}
+.food-day h4{font-family:'Noto Serif TC',serif;font-size:17px;color:var(--green2);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.food-day h4 .dchip{font-size:12px;background:var(--green);color:#fff;border-radius:99px;padding:2px 12px;font-family:'Noto Sans TC'}
+
+
+
+/* gear */
+.gear{display:flex;gap:12px;flex-wrap:wrap}
+.gear .g{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:14px;box-shadow:var(--shadow)}
+.gear .g b{display:block;color:var(--green2);margin-bottom:2px}
+
+/* weather */
+.weather{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:26px;margin-bottom:34px}
+.weather h3{font-family:'Noto Serif TC',serif;font-size:20px;color:var(--green2);margin-bottom:6px}
+.weather .note{font-size:12.5px;color:#8a948c;margin-bottom:18px}
+.wcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.wcard{background:#f7f5ee;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.wcard .wd{font-weight:800;color:var(--green2);font-size:15px;margin-bottom:4px}
+.wcard .wicon{font-size:36px;margin:8px 0}
+.wcard .wtemp{font-size:18px;font-weight:900;color:var(--ink);margin:4px 0}
+.wcard .wdesc{font-size:13px;color:#5d6a61}
+.wcard .wprob{font-size:12px;color:#8a948c;margin-top:4px}
+.wgear{margin-top:20px;background:#fff8ea;border:1px solid #f0dfb8;border-radius:14px;padding:16px}
+.wgear h4{font-size:14px;color:#8f6f1f;margin-bottom:8px}
+.wgear ul{margin:0;padding-left:18px;font-size:13.5px;color:#6b5a2e}
+.wgear ul li{margin-bottom:4px}
+
+
+footer{border-top:1px solid var(--line);padding:26px 0 40px;text-align:center;color:#8a948c;font-size:13px;background:#f1eee3}
+footer b{color:#5d6a61}
+img{max-width:100%}
+
+@media(max-width:760px){
+ .nav a{display:none}
+ .hamburger{display:flex}
+ .hero h1{font-size:28px}
+ .hero{padding:44px 0}
+ ul.timeline li{grid-template-columns:1fr;gap:2px}
+ .tm{white-space:normal}
+ .day-head{height:170px}
+ .day-head h3{font-size:19px}
+ .backup-table{font-size:12px}
+ .backup-table th,.backup-table td{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<span class="brand">🏔 桃園三日登山 11/07–26</span>
+<div class="nav">
+<a href="#typhoon">颱風動畫</a>
+<a href="#weather">天氣預報</a>
+<a href="#days">三日行程</a>
+<a href="#d1">D1 復興·大溪</a>
+<a href="#d2">D2 桃園市區</a>
+<a href="#d3">D3 楊梅</a>
+<a href="#backup">🌀 颱風備案</a>
+<a href="#food">餐廳清單</a>
+</div>
+</div></nav>
+
+<button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer">
+<button class="close-btn" id="drawer-close">✕</button>
+<a href="#weather" onclick="closeDrawer()">天氣預報</a>
+<a href="#days" onclick="closeDrawer()">三日行程</a>
+<a href="#d1" onclick="closeDrawer()">D1 復興·大溪 <span class="ddate">11/07</span></a>
+<a href="#d2" onclick="closeDrawer()">D2 桃園市區 <span class="ddate">11/08</span></a>
+<a href="#d3" onclick="closeDrawer()">D3 楊梅 <span class="ddate">11/09</span></a>
+<a href="#backup" onclick="closeDrawer()">🌀 颱風備案</a>
+<a href="#food" onclick="closeDrawer()">餐廳清單</a>
+</div>
+
+<header class="hero"><div class="container">
+<span class="kicker">2026.10.24 – 10.26 · 桃園三日兩夜</span>
+<h1>桃園三日微健行<br>山林瀑布 × 高分美食</h1>
+<p class="sub">結合平緩步道、高分餐廳與順暢的開車動線。出發前記得帶上雙筒望遠鏡，以<span style="font-weight:700">瀚凱的 RAV4</span>從韋廷家（桃園龍潭）出發，展開這趟山林放鬆之旅。</p>
+<div class="stats">
+<div class="stat"><b>3 天 2 夜</b>平緩步道・不爬山</div>
+<div class="stat"><b>3 大主題</b>山林瀑布／城市夜景／茶園丘陵</div>
+<div class="stat"><b>11/06 晚</b>先到韋廷家（桃園龍潭）</div>
+<div class="stat"><b>🚗 車輛</b>瀚凱 RAV4</div>
+<div class="stat"><b>🌀 備案</b>室內景點完整備妥</div>
+</div>
+</div></header>
+
+<!-- 颱風動畫 -->
+<section id="typhoon"><div class="container">
+<div class="sec-title"><span class="no">00</span><h2>🌀 颱風路徑預測動畫</h2></div>
+<p class="sec-sub">下方動畫顯示中央氣象署最新颱風路徑潛勢預測與暴風圈侵襲機率。建議出發前（11/05 起）密切關注動態，以便調整行程。</p>
+<div style="border:2px solid var(--green);border-radius:16px;overflow:hidden;margin:20px 0;background:var(--card)">
+<iframe src="https://www.twipcam.com/widget/v1/typhoon" width="100%" height="600" style="border:none;display:block" allowfullscreen></iframe>
+</div>
+<p style="font-size:12px;color:#8a948c;margin-top:8px">📊 資料來源：交通部中央氣象署 ｜ 嵌入來源：twipcam 台灣即時影像監視器</p>
+</div></section>
+
+<!-- 天氣預報 -->
+<section id="weather"><div class="container">
+<div class="sec-title"><span class="no">00</span><h2>當週天氣預報</h2></div>
+<p class="note">以下為 10 月歷史氣候平均，實際天氣請於出發前 3–7 天查詢中央氣象署 <a href="https://www.cwa.gov.tw" target="_blank">cwa.gov.tw</a></p>
+<div class="wcards">
+<div class="wcard">
+<div class="wd">D1｜11/07（六）</div>
+<div class="wicon">⛅</div>
+<div class="wtemp">22°C / 28°C</div>
+<div class="wdesc">多雲到晴</div>
+<div class="wprob">降雨機率 20%</div>
+</div>
+<div class="wcard">
+<div class="wd">D2｜11/08（日）</div>
+<div class="wicon">🌤️</div>
+<div class="wtemp">21°C / 29°C</div>
+<div class="wdesc">晴時多雲</div>
+<div class="wprob">降雨機率 15%</div>
+</div>
+<div class="wcard">
+<div class="wd">D3｜11/09（一）</div>
+<div class="wicon">⛅</div>
+<div class="wtemp">21°C / 28°C</div>
+<div class="wdesc">多雲有雨</div>
+<div class="wprob">降雨機率 35%</div>
+</div>
+</div>
+<div class="wgear">
+<h4>🎒 穿衣建議</h4>
+<ul>
+<li>白天氣溫舒適（22-29°C），建議穿著薄長袖或短袖</li>
+<li>山區（東眼山）早晚較涼，建議帶一件薄外套</li>
+<li>小烏來瀑布區水氣重，建議穿防滑健行鞋</li>
+<li>D3 降雨機率較高，建議備輕便雨衣</li>
+<li>防曬：太陽眼鏡、帽子、防曬乳（10 月紫外線仍強）</li>
+</ul>
+</div>
+</div></section>
+
+<!-- 三日行程 -->
+<section id="days"><div class="container">
+<div class="sec-title"><span class="no">01</span><h2>三日行程</h2></div>
+<p class="sec-sub">每日動線由高海拔往平地或市區推進，開車時間皆控制在 1 小時內，輕鬆不趕路。每日從韋廷家（龍潭）出發，全程以瀚凱的 RAV4 代步。</p>
+<div id="daylist"></div>
+</div></section>
+
+<!-- 餐廳清單 -->
+<section id="food"><div class="container">
+<div class="sec-title"><span class="no">02</span><h2>餐廳清單</h2></div>
+<p class="sec-sub">全部分佈在行程動線上，建議提前 1–2 天訂位（週六、週日晚餐為滿座高風險時段）。</p>
+
+<div class="food-day">
+<h4><span class="dchip">D1 午餐</span>角板山商圈（二選一）</h4>
+<div class="foods">
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/廟口王家小吃 + 角板山" target="_blank">廟口王家小吃</a> <span class="stars">★4.7</span></div><div class="faddr">復興區中正路 85 號</div><div class="fdesc">在地段木香菇與原民風味</div></div>
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/角板山平價小吃 + 角板山" target="_blank">角板山平價小吃</a></div><div class="faddr">復興區中正路 51 號</div><div class="fdesc">平價角板山小吃</div></div>
+</div>
+<div style="margin-top:8px;font-size:12.5px;color:#8a948c;">備案：<a href="https://www.google.com/maps/search/東眼山森林食堂" target="_blank">東眼山森林食堂</a>（位於東眼山森林公園內）</div>
+</div>
+
+<div class="food-day">
+<h4><span class="dchip">D1 晚餐</span>龍潭・與韋廷會合聚餐（三選一）</h4>
+<div class="foods">
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/The%20%E5%91%96%E5%95%A1%26dining%20%E9%BE%8D%E6%B7%AD" target="_blank">The 畔 cafe&dining</a> <span class="stars">★4.6</span></div><div class="faddr">龍潭區金龍路 8 巷 22 號</div><div class="fdesc">環境精緻的義式料理</div></div>
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/%E8%A6%8B%E5%B1%B1%E6%99%AF%E8%A7%80%E5%92%96%E5%95%A1%E9%A4%90%E5%BB%B3%20%E9%BE%8D%E6%B7%AD" target="_blank">見山景觀咖啡餐廳</a> <span class="stars">★4.9</span></div><div class="faddr">龍潭區楊銅路二段 719 號</div><div class="fdesc">無敵夜景與極致好評的服務</div></div>
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/%E5%A4%A7%E6%B1%A0%20Front%20%E6%99%AF%E8%A7%80%20BISTRO%26Cafe%20%E9%BE%8D%E6%B7%AD" target="_blank">大池 Front 景觀 BISTRO&Cafe</a> <span class="stars">★4.8</span></div><div class="faddr">龍潭區中豐路上林段 115 巷 11 號 2 樓</div><div class="fdesc">氣氛活潑的網美餐酒館</div></div>
+</div>
+</div>
+
+<div class="food-day">
+<h4><span class="dchip">D2 午餐</span>虎頭山甕仔雞（二選一）</h4>
+<div class="foods">
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/瀧霆花園甕仔雞 + 龜山" target="_blank">瀧霆花園甕仔雞</a></div><div class="faddr">龜山區華义路 100 號</div><div class="fdesc">環境優美的花園餐廳，甕仔雞、三杯雞必點</div></div>
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/虎頭山土雞城 + 龜山" target="_blank">虎頭山土雞城</a></div><div class="faddr">龜山區樹人路 305 巷 50 弄 10 號</div><div class="fdesc">白斬雞、芋頭米粉超推，包廂聚餐首選</div></div>
+</div>
+</div>
+
+<div class="food-day">
+<h4><span class="dchip">D2 晚餐</span>石田一龍拉麵 - 台灣初號店</h4>
+<div class="foods">
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/石田一龍拉麵 - 台灣初號店" target="_blank">石田一龍拉麵 - 台灣初號店</a></div><div class="faddr">桃園區寶慶路 92 號</div><div class="fdesc">日本北九州拉麵賽 6 冠王，叉燒 MAX 拉麵超推，22:00 打烊</div></div>
+</div>
+</div>
+
+<div class="food-day">
+<h4><span class="dchip">D3 午餐</span>楊梅客家菜（三選一）</h4>
+<div class="foods">
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/八方園百年三合院客家餐廳 + 楊梅" target="_blank">八方園百年三合院客家餐廳</a> <span class="stars">★4.8</span></div><div class="faddr">楊梅區校前路 580 號</div><div class="fdesc">在百年古厝內享用經典客家手路菜</div></div>
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/家常菜張小蘭 + 楊梅" target="_blank">家常菜張小蘭</a> <span class="stars">★4.7</span></div><div class="faddr">楊梅區三元街 132-1 號</div><div class="fdesc">充滿溫度與巧思的私房料理</div></div>
+<div class="foodcard"><div class="fname"><a href="https://www.google.com/maps/search/善緣客家小館 + 楊梅" target="_blank">善緣客家小館</a> <span class="stars">★4.6</span></div><div class="faddr">楊梅區楊新路 101 號</div><div class="fdesc">傳統道地、份量十足的市區選擇</div></div>
+</div>
+</div>
+</div></section>
+
+<!-- 颱風備案 -->
+<section id="backup"><div class="container">
+<div class="sec-title"><span class="no">03</span><h2>🌀 颱風天備案</h2></div>
+<p class="sec-sub">當中央氣象署發布陸上颱風警報，或單日降雨機率 &gt; 70% 時啟動備案。所有備案皆為 <b>室內／半室內</b> 景點，動線與原行程一致。</p>
+
+<div class="emergency" style="margin-bottom:24px">
+<h3>🚨 啟動時機</h3>
+<table>
+<tr><th>時機</th><th>行動</th></tr>
+<tr><td>陸上颱風警報發布</td><td>直接啟動 <b>全日備案</b></td></tr>
+<tr><td>當日降雨機率 &gt; 70% 或中大雨</td><td>替換該項 <b>戶外活動</b></td></tr>
+<tr><td>山區道路積水／落石封閉</td><td>取消該區域行程，改市區備案</td></tr>
+</table>
+</div>
+
+<div id="backuplist"></div>
+</div></section>
+
+<!-- 行前檢查 -->
+<section id="checklist"><div class="container">
+<div class="sec-title"><span class="no">04</span><h2>行前檢查清單</h2></div>
+<div class="gear">
+<div class="g"><b>📱 出發前 3 天</b>查詢中央氣象署颱風動態</div>
+<div class="g"><b>📱 出發前 1 天</b>確認陸上警報是否解除</div>
+<div class="g"><b>🚗 車輛檢查</b>雨刷、煞車、胎紋（山路濕滑）</div>
+<div class="g"><b>🌧 備雨具</b>雨衣 > 雨傘、防水袋（手機 / 相機）</div>
+<div class="g"><b>👟 備鞋</b>防滑防水健行鞋或雨靴</div>
+<div class="g"><b>📞 餐廳訂位</b>週日用餐人潮多，提前電話預約</div>
+</div>
+</div></section>
+
+<footer><div class="container">
+<div><b>2026 桃園三日兩夜・桃園三日登山</b>（11/07–11/09）｜Hermes Agent Ryzen 製</div>
+<div>車輛：瀚凱 RAV4 ｜ 住宿：韋廷家（桃園龍潭）</div>
+<div>圖片：Wikimedia Commons（CC 授權，部分為示意）</div>
+</div></footer>
+
+<script>
+const CATNAME={hike:'微健行',food:'覓食',rest:'休憩',shot:'景點',drive:'交通',backup:'備案'};
+const IMG={
+ d1:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/%E6%9D%B1%E7%9C%BC%E5%B1%B1_%287360114734%29.jpg/960px-%E6%9D%B1%E7%9C%BC%E5%B1%B1_%287360114734%29.jpg",
+ d1b:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/2021_Xiao_Wulai_Waterfall_in_Fuxing_District_i.jpg/960px-2021_Xiao_Wulai_Waterfall_in_Fuxing_District_i.jpg",
+ d2:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/%E6%A1%83%E5%9C%92%E7%A5%9E%E7%A4%BE%E9%B3%A5%E5%B1%85.jpg/960px-%E6%A1%83%E5%9C%92%E7%A5%9E%E7%A4%BE%E9%B3%A5%E5%B1%85.jpg",
+ d3:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Views_from_Jioufen-04.2023-09-20.jpg/960px-Views_from_Jioufen-04.2023-09-20.jpg"
+};
+
+const DAYS=[
+ {no:1,date:"11/07",wd:"六",title:"復興區山林瀑布與大溪茶香",img:IMG.d1,
+  route:"11/06 晚先到韋廷家（龍潭文化路 1142 巷 6 號）休息，11/07 早上從韋廷家出發，開瀚凱的 RAV4 往復興區，全程順暢。晚餐後回韋廷家過夜。",
+  items:[
+  {t:"09:30-11:30",cat:"hike",name:"高海拔森林浴｜東眼山國家森林遊樂區",desc:"走平緩的景觀步道，拿起望遠鏡觀察茂密柳杉林間的生態，享受舒適微涼的氣溫。",addr:"復興區霞雲里成福路 600 號",lat:24.8578,lng:121.2664},
+  {t:"12:00-13:00",cat:"food",name:"在地午餐｜角板山形象商圈",desc:"廟口王家小吃（中正路 85 號，★4.7）、角板山平價小吃（中正路 51 號）。品嚐在地段木香菇與原民風味。",addr:"復興區澤仁里中正路周邊",lat:24.8327,lng:121.2333},
+  {t:"13:30-15:00",cat:"shot",name:"輕鬆賞瀑｜小烏來天空步道",desc:"門票 50 元。避開園區中午休息時間，直接站在透明玻璃平台上近距離感受瀑布震撼，免除爬山勞頓。",addr:"復興區義盛里 1 鄰 4-6 號",lat:24.8663,lng:121.2292},
+  {t:"15:30-16:30",cat:"rest",name:"室內休憩｜大溪老茶廠",desc:"下山順路停靠，在充滿茶香的百年建築冷氣房內讓雙腿放鬆。",addr:"大溪區新峰里復興路二段 732 巷 80 號",lat:24.8866,lng:121.2842},
+  {t:"17:30-19:30",cat:"food",name:"龍潭晚餐｜與韋廷的家庭聚餐",desc:"【晚餐三選一】<br>1. <a href=\"https://www.google.com/maps/search/The畔+cafe+dining+龍潭\" target=\"_blank\">The畔 cafe&dining</a>（金龍路 8 巷 22 號，★4.6）<br>2. <a href=\"https://www.google.com/maps/search/見山景觀咖啡餐廳+龍潭\" target=\"_blank\">見山景觀咖啡餐廳</a>（楊銅路二段 719 號，★4.9）<br>3. <a href=\"https://www.google.com/maps/search/大池Front+景觀+BISTRO+Cafe+龍潭\" target=\"_blank\">大池 Front 景觀 BISTRO&Cafe</a>（中豐路上林段 115 巷 11 號 2 樓，★4.8）<br>選定後可直接導航前往。",addr:"龍潭區晚餐地點",lat:24.8599,lng:121.2510}
+  ],
+  tip:"晚餐後回韋廷家過夜，11/08 早上從韋廷家出發前往桃園市區。"},
+ {no:2,date:"11/08",wd:"日",title:"虎頭山 × 桃園市區的城市綠洲",img:IMG.d2,
+   route:"從韋廷家（龍潭）出發，開瀚凱的 RAV4 往龜山虎頭山，午餐後南下桃園市區逛神社，晚餐在火車站旁吃石田一龍拉麵。",
+   items:[
+   {t:"09:30-11:30",cat:"hike",name:"全齡友善步道｜虎頭山公園",desc:"步道鋪設極為平整，林蔭茂密，是毫無負擔的綠色廊道。",addr:"桃園區龜山里公園路 42 號",lat:24.9955,lng:121.2935},
+   {t:"12:00-13:30",cat:"food",name:"甕仔雞午餐｜虎頭山二選一",desc:"【午餐二選一】<br>1. <a href=\"https://www.google.com/maps/search/瀧霆花園甕仔雞+龜山\" target=\"_blank\">瀧霆花園甕仔雞</a>（華义路 100 號，花園環境）<br>2. <a href=\"https://www.google.com/maps/search/虎頭山土雞城+龜山\" target=\"_blank\">虎頭山土雞城</a>（樹人路 305 巷 50 弄 10 號，包廂首選）<br>選定後可直接導航前往。",addr:"龜山區午餐地點",lat:24.9950,lng:121.2975},
+   {t:"14:00-15:30",cat:"shot",name:"日式風情｜桃園神社_昭和拾參",desc:"全台保存最完整的日式神社，園區內有文創小店可逛。",addr:"桃園區三元里成功路三段 200 號",lat:25.0098,lng:121.2983},
+   {t:"18:00-19:30",cat:"food",name:"豚骨拉麵｜石田一龍拉麵 - 台灣初號店",desc:"日本北九州拉麵賽 6 冠王，火車站旁寶慶路初號店，叉燒 MAX 拉麵超推，22:00 打烊。",addr:"桃園區寶慶路 92 號",lat:25.0080,lng:121.3030}
+   ],
+   tip:"虎頭山公園和土雞城都在虎頭山，下山直接吃午餐，完全順路。下午南下桃園市區逛神社，晚餐在火車站旁吃石田一龍拉麵。晚餐後回韋廷家過夜。",
+ },
+ {no:3,date:"11/09",wd:"一",title:"楊梅茶園丘陵與客家庄風味",img:IMG.d3,
+  route:"行程最為寬鬆的一天，深入體驗客家文化，午後悠閒返程。",
+  items:[
+  {t:"09:30-11:30",cat:"hike",name:"開闊丘陵｜秀才登山步道",desc:"O 型平緩路線，穿梭於翠綠茶樹與農田間，視野極佳。",addr:"楊梅區秀才里（導航設定步道口）",lat:24.9130,lng:121.1500},
+  {t:"12:00-13:30",cat:"food",name:"客家午餐｜楊梅頂級客家菜",desc:"【午餐三選一】<br>1. <a href=\"https://www.google.com/maps/search/八方園百年三合院客家餐廳+楊梅\" target=\"_blank\">八方園百年三合院客家餐廳</a>（校前路 580 號，★4.8）<br>2. <a href=\"https://www.google.com/maps/search/家常菜張小蘭+楊梅\" target=\"_blank\">家常菜張小蘭</a>（三元街 132-1 號，★4.7）<br>3. <a href=\"https://www.google.com/maps/search/善緣客家小館+楊梅\" target=\"_blank\">善緣客家小館</a>（楊新路 101 號，★4.6）<br>選定後可直接導航前往。",addr:"楊梅區午餐地點",lat:24.9150,lng:121.1580},
+  {t:"14:00-15:30",cat:"rest",name:"歐式庭園｜楊梅雅聞魅力博覽館",desc:"在玫瑰花園中喝杯下午茶，為這趟旅程畫下句點。",addr:"楊梅區中山北路一段 21 巷 1 號",lat:24.9172,lng:121.1545},
+  {t:"16:00-17:00",cat:"drive",name:"前往高鐵桃園站",desc:"開瀚凱的 RAV4 前往高鐵桃園站，載賀百跟家禎。",addr:"高鐵北路一段 6 號",lat:25.0150,lng:121.2144},
+  {t:"17:00-17:30",cat:"drive",name:"返回韋廷家（龍潭）",desc:"載賀百跟家禎上車後，開回韋廷家（龍潭文化路 1142 巷 6 號）休息。",addr:"龍潭區文化路 1142 巷 6 號",lat:24.8599,lng:121.2510},
+  {t:"17:30",cat:"drive",name:"驅車南下回家",desc:"從韋廷家出發，開瀚凱的 RAV4 南下至彰化還車（和凱在彰化）。",addr:"駕車南下回家",lat:24.0,lng:120.5}
+  ],
+  tip:"週一楊梅車流少，14:00 的下午茶時段建議訂位。16:00 出發去高鐵桃園站載賀百跟家禎，17:00 回韋廷家，17:30 出發回家，開瀚凱的 RAV4 南下至彰化還車（和凱在彰化）。"}
+];
+
+
+/* Typhoon backup data */
+const BACKUPS=[
+ {no:1,title:"D1 復興區・大溪區備案",
+  items:[
+   {orig:"東眼山國家森林遊樂區",alt:"大溪木藝生態博物館",detail:"📍 大溪區和平路二段 36 號 ｜ 🕘 09:00–17:00 ｜ 免費 ｜ 日治警察宿舍群，木器工藝展＋咖啡廳"},
+   {orig:"角板山形象商圈午餐",alt:"角板山行館＋景觀餐廳",detail:"📍 復興區中正路 209 號 ｜ 🕘 09:00–17:00 ｜ 免費 ｜ 蔣介石行館建築（需預約）"},
+   {orig:"小烏來天空步道",alt:"金蘭醬油觀光工廠",detail:"📍 大溪區仁武里仁美街 2 之 1 號 ｜ 🕘 09:00–17:00 ｜ 免費 ｜ 醬油釀造展示＋DIY NT$150"}
+  ],
+  route:"韋廷家（龍潭）→ 大溪木藝生態博物館（09:30）→ 角板山行館＋午餐（12:00）→ 金蘭醬油觀光工廠（13:30）→ 大溪老街散步（15:00）→ 大溪老茶廠（16:00）→ 龍潭晚餐（17:30）"},
+ {no:2,title:"D2 龜山・桃園市區備案",
+  items:[
+   {orig:"虎頭山公園",alt:"IKEA 桃園店",detail:"📍 龜山區復興一路 600 號 ｜ 🕘 10:00–21:00 ｜ 免費 ｜ 逛賣場＋樓上餐廳午餐"},
+   {orig:"虎頭山土雞城",alt:"大江國際購物中心",detail:"📍 中壢區中大路 200 號 ｜ 🕘 11:00–22:00 ｜ 免費 ｜ 美食街＋餐廳樓層"},
+   {orig:"桃園神社（半戶外）",alt:"桃園市立圖書館新總館",detail:"📍 桃園區南平路 263 號 ｜ 🕘 09:00–21:00 ｜ 免費 ｜ 蔦屋書店＋星巴克＋閱讀空間"}
+  ],
+  route:"韋廷家（龍潭）→ IKEA 桃園店（09:30）→ 大江購物中心午餐（12:00）→ 桃園市立圖書館新總館（14:00）→ 石田一龍拉麵（18:00）"},
+ {no:3,title:"D3 楊梅區備案",
+  items:[
+   {orig:"秀才登山步道",alt:"可口可樂世界",detail:"📍 中壢區中豐路 166 號 ｜ 🕘 10:00–17:00 ｜ NT$300 ｜ 互動展覽＋限定商品＋DIY 體驗"}
+  ],
+  route:"韋廷家（龍潭）→ 可口可樂世界（10:00）→ 楊梅客家菜午餐（12:00）→ 雅聞博覽館下午茶（14:00）→ 高鐵桃園站接人（16:00）"}
+];
+function dayCard(d){
+ const backupItems=BACKUPS.find(b=>b.no===d.no);
+ const hasBackup=backupItems&&backupItems.items.length>0;
+
+ function buildItems(items){
+  return items.map(it=>{
+   const addrLink=it.lat&&it.lng
+    ?`<span class="addr"><span class="pin">📍</span> <a href="https://www.google.com/maps/search/${encodeURIComponent(it.name)}" target="_blank">${it.addr}</a></span>`
+    :it.addr?`<span class="addr"><span class="pin">📍</span> ${it.addr}</span>`:'';
+   return `<li><div class="tm">${it.t}</div><div class="what"><span class="cat ${it.cat}">${CATNAME[it.cat]}</span><b>${it.name}</b><div>${it.desc}</div>${addrLink}</div></li>`;
+  }).join('');
+ }
+
+ const origHtml=buildItems(d.items);
+
+ const switcher=hasBackup?`
+ <div class="day-switch">
+  <button class="sw-btn active" id="sw-${d.no}-orig" onclick="switchDay(${d.no},'orig')">🏔 原行程</button>
+  <button class="sw-btn alt" id="sw-${d.no}-backup" onclick="switchDay(${d.no},'backup')">🌀 颱風備案</button>
+ </div>`:'';
+
+ return `<div class="day" id="d${d.no}" data-orig-html="${origHtml.replace(/"/g,'&quot;')}">
+ <div class="day-head"><img src="${d.img}" alt="${d.title}" loading="lazy">
+ <div class="info"><div>
+ <div class="date">DAY ${d.no}｜${d.date}（週${d.wd}）</div>
+ <h3>${d.title}</h3>
+ <div class="tagline">桃園市・${d.no===1?'復興區／大溪區／龍潭區':d.no===2?'桃園區（大有特區）':'楊梅區'}</div>
+ </div></div></div>
+ <div class="day-body">
+ ${switcher}
+ <div class="route-line">🚗 ${d.route}</div>
+ <ul class="timeline" id="tl-${d.no}">${origHtml}</ul>
+ <div class="tip">💡 <b>提醒</b>：${d.tip}</div>
+ </div></div>`;
+}
+document.getElementById('daylist').innerHTML=DAYS.map(dayCard).join('');
+
+
+function switchDay(dayNo, mode){
+ const dayEl=document.getElementById(`d${dayNo}`);
+ const origHtml=dayEl.getAttribute('data-orig-html');
+ const backup=BACKUPS.find(b=>b.no===dayNo);
+ if(mode==='backup'&&backup){
+  const backupItems=backup.items.map(it=>({t:'—',cat:'backup',name:`${it.orig} → ${it.alt}`,desc:it.detail,addr:''}));
+  const backupHtml=backupItems.map(it=>{
+   return `<li><div class="tm">${it.t}</div><div class="what"><span class="cat ${it.cat}">${CATNAME[it.cat]}</span><b>${it.name}</b><div>${it.desc}</div></li>`;
+  }).join('');
+  document.getElementById(`tl-${dayNo}`).innerHTML=backupHtml;
+  dayEl.querySelector('.route-line').innerHTML=`🚗 ${backup.route}`;
+  document.getElementById(`sw-${dayNo}-orig`).classList.remove('active');
+  document.getElementById(`sw-${dayNo}-backup`).classList.add('active');
+ }else{
+  if(origHtml) document.getElementById(`tl-${dayNo}`).innerHTML=origHtml;
+  dayEl.querySelector('.route-line').innerHTML=`🚗 ${DAYS.find(d=>d.no===dayNo).route}`;
+  document.getElementById(`sw-${dayNo}-orig`).classList.add('active');
+  document.getElementById(`sw-${dayNo}-backup`).classList.remove('active');
+ }
+}
+
+
+function backupCard(b){
+ const rows=b.items.map(it=>`<tr><td class="orig">${it.orig}</td><td class="alt">→ ${it.alt}</td></tr><tr><td colspan="2" style="font-size:12.5px;color:#6c7a70">${it.detail}</td></tr>`).join('');
+ const boxId=`backup-box-${b.no}`;
+ return `<div class="day" style="margin-bottom:24px">
+ <div class="day-body">
+ <button class="backup-toggle" onclick="document.getElementById('${boxId}').classList.toggle('show')">🌀 ${b.title}（點擊展開）</button>
+ <div class="backup-box" id="${boxId}">
+ <h4>🔄 原行程 vs 備案對照</h4>
+ <table class="backup-table">
+ <tr><th>原行程（戶外）</th><th>🔴 備案（室內）</th></tr>
+ ${rows}
+ </table>
+ <div class="backup-route"><b>🚗 備案完整動線：</b>${b.route}</div>
+ </div>
+ </div></div>`;
+}
+document.getElementById('backuplist').innerHTML=BACKUPS.map(backupCard).join('');
+
+/* drawer */
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawer-overlay').classList.add('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawer-overlay').classList.remove('open')}
+document.getElementById('hamburger').addEventListener('click',openDrawer);
+document.getElementById('drawer-close').addEventListener('click',closeDrawer);
+document.getElementById('drawer-overlay').addEventListener('click',closeDrawer);
+</script>
+</body>
+</html>

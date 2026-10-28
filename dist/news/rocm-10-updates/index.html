@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-Hant"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AMD ROCm 10.0 深度解析：從 7.14 到 10.0 的架構轉型與實務指南 | InfoSecure 沅品科技</title><meta name="description" content="AMD ROCm 10.0.0 於 2026 年 8 月 26 日發布，標誌著 TheRock 構建系統全面接管後的第一個 major release。本文深度解析所有新功能、硬體支援、Breaking Changes、升級路徑與實務建議。"><link rel="icon" href="https://raw.githubusercontent.com/Ryzen9800X3D/Web/refs/heads/main/icon.jpg" type="image/jpeg"><link rel="stylesheet" href="/_astro/about.Y8nB2my8.css">
+<link rel="stylesheet" href="/_astro/_slug_.DbZYB5Bn.css"><script type="module" src="/_astro/hoisted.Bu-xANL2.js"></script></head> <body>  <header data-astro-cid-dmqpwcec> <div class="container nav-bar" data-astro-cid-dmqpwcec> <div class="logo-section" data-astro-cid-dmqpwcec> <a href="/" class="logo-main-link" data-astro-cid-dmqpwcec> <img src="/images/icon-2.png" alt="InfoSecure Logo" class="logo-img" data-astro-cid-dmqpwcec> </a> </div> <!-- Desktop Navigation --> <nav class="nav-menu desktop-nav" data-astro-cid-dmqpwcec> <a href="/about" class="" data-astro-cid-dmqpwcec>關於我們</a> <a href="/#solutions" data-astro-cid-dmqpwcec>解決方案</a> <a href="/#products" data-astro-cid-dmqpwcec>產品資訊</a> <a href="/#cases" data-astro-cid-dmqpwcec>成功案例</a> <a href="/news" data-astro-cid-dmqpwcec>最新消息</a> <a href="/#inquiry" class="btn btn-primary" data-astro-cid-dmqpwcec>立即諮詢</a> </nav> <!-- Mobile Menu Toggle --> <button class="mobile-menu-toggle" aria-label="開啟選單" aria-expanded="false" onclick="document.dispatchEvent(new CustomEvent('toggle-mobile-menu'))" data-astro-cid-dmqpwcec> <span class="hamburger-line" data-astro-cid-dmqpwcec></span> <span class="hamburger-line" data-astro-cid-dmqpwcec></span> <span class="hamburger-line" data-astro-cid-dmqpwcec></span> </button> </div> </header> <!-- Mobile Full-Screen Menu Overlay --> <div class="mobile-nav-overlay" id="mobile-nav" data-astro-cid-dmqpwcec> <div class="mobile-nav-content" data-astro-cid-dmqpwcec> <nav class="mobile-nav-links" data-astro-cid-dmqpwcec> <a href="/about" class="mobile-link" data-astro-cid-dmqpwcec>關於我們</a> <a href="/#solutions" class="mobile-link" data-astro-cid-dmqpwcec>解決方案</a> <a href="/#products" class="mobile-link" data-astro-cid-dmqpwcec>產品資訊</a> <a href="/#cases" class="mobile-link" data-astro-cid-dmqpwcec>成功案例</a> <a href="/news" class="mobile-link" data-astro-cid-dmqpwcec>最新消息</a> <a href="/#inquiry" class="mobile-link mobile-cta" data-astro-cid-dmqpwcec>立即諮詢</a> </nav> </div> </div>    <section class="page-hero" data-astro-cid-vcwz2lde> <div class="container" data-astro-cid-vcwz2lde> <h1 data-astro-cid-vcwz2lde>AMD ROCm 10.0 深度解析：從 7.14 到 10.0 的架構轉型與實務指南</h1> <div class="breadcrumb" data-astro-cid-vcwz2lde> <a href="/" data-astro-cid-vcwz2lde>首頁</a> <span data-astro-cid-vcwz2lde>/</span> <a href="/news" data-astro-cid-vcwz2lde>最新消息</a> <span data-astro-cid-vcwz2lde>/</span> 正文
+</div> </div> </section> <article class="article-wrap" data-astro-cid-vcwz2lde> <div class="container" data-astro-cid-vcwz2lde> <div class="article-inner" data-astro-cid-vcwz2lde> <div class="article-meta" data-astro-cid-vcwz2lde> <span class="article-tag" data-astro-cid-vcwz2lde>AI知識</span> <span class="article-date" data-astro-cid-vcwz2lde>📅 2026-08-27</span> <span class="article-author" data-astro-cid-vcwz2lde>✍️ 沅品科技硬體研究團隊</span> </div> <img src="/images/rocm-10-updates/rocm-logo.png" class="featured-img" alt="AMD ROCm 10.0 深度解析：從 7.14 到 10.0 的架構轉型與實務指南" data-astro-cid-vcwz2lde> <div class="article-content" data-astro-cid-vcwz2lde> <h2 id="amd-rocm-迎來重大版本躍遷">AMD ROCm 迎來重大版本躍遷</h2>
+<p>AMD 於 2026 年 8 月 26 日正式發布 <strong>ROCm 10.0.0</strong>，這不僅是版本號從 7.x 跳到 10.0 的數字遊戲，更代表 AMD AI 軟體平台進入一個全新的時代。從 7.14 的 TheRock 過渡版，到 10.0 的全面接管，AMD 正在加速推動其 AI 生態系走向模組化、高頻率更新的未來。</p>
+<p>對於企業基礎設施而言，理解這個平台的架構變化，將直接影響未來三年內的雲端成本與效能決策。</p>
+<h3 id="為什麼這次版本躍遷如此重要">為什麼這次版本躍遷如此重要？</h3>
+<p>從 7.x 直接跳到 <strong>10.0</strong>，代表 TheRock 構建系統全面接管後的<strong>第一個正式 major release</strong>。AMD 同時宣布改為 <strong>每六週</strong> 發布新功能的節奏（不再季度發布），這意味著：</p>
+<ul>
+<li><strong>更快的功能迭代</strong>：新特性與優化將以雙月週期持續推出</li>
+<li><strong>更靈活的模組化架構</strong>：各組件可獨立更新，降低整體系統風險</li>
+<li><strong>更快的問題修復</strong>：已知問題能在更短時間內獲得修正</li>
+</ul>
+<p><img src="/images/rocm-10-updates/rocm-sdk-arch.png" alt="ROCm 軟體堆疊架構"></p>
+<p><em>圖 1：ROCm 10.0 的完整軟體堆疊，涵蓋從硬體到應用層的完整支援</em></p>
+<p>沅品技術團隊觀點：<strong>「ROCm 10.0 的發布週期縮短，代表 AMD 正在以更快的速度追趕 NVIDIA 的 CUDA 生態系。對於企業而言，這意味著更頻繁的功能升級，但也需要更嚴格的版本管理策略。」</strong></p>
+<hr>
+<h2 id="從-714-到-100therock-構建系統的演進">從 7.14 到 10.0：TheRock 構建系統的演進</h2>
+<h3 id="rocm-7140過渡期的關鍵版本">ROCm 7.14.0：過渡期的關鍵版本</h3>
+<p>2026 年 7 月 15 日發布的 ROCm 7.14.0 是「最後一代舊架構」與「新 TheRock 平台」的過渡版本，官方建議 7.2 以下用戶遷移至此。</p>
+<h3 id="核心變更">核心變更</h3>
+<ul>
+<li><strong>TheRock 構建系統正式導入</strong>：從 monolithic 轉向模組化架構</li>
+<li><strong>Core SDK 瘦身</strong>：聚焦 essential runtime 與開發組件</li>
+<li><strong>硬體支援擴展</strong>：新增更多 GPU 與作業系統支援</li>
+<li><strong>AI 框架強化</strong>：PyTorch、TensorFlow 更新</li>
+<li><strong>ROCprofiler-SDK</strong>：AI profiling 工具升級</li>
+</ul>
+<p><img src="/images/rocm-10-updates/rocm-ontology.png" alt="ROCm 7.14 TheRock 構建系統"></p>
+<p><em>圖 2：ROCm 7.14 導入 TheRock 構建系統，標誌著模組化架構的開始</em></p>
+<h3 id="714-的歷史定位">7.14 的歷史定位</h3>
+<p>7.14 不僅是過渡版本，更是 AMD 軟體架構的<strong>分水嶺</strong>。從這個版本開始，ROCm 正式告别過去 monolithic 的開發模式，轉向模組化、可獨立更新的架構。這為後續 10.0 的快速迭代奠定了基礎。</p>
+<hr>
+<h2 id="rocm-1000硬體支援全面擴展">ROCm 10.0.0：硬體支援全面擴展</h2>
+<h3 id="新增消費級-gpu-支援">新增消費級 GPU 支援</h3>
+<p>ROCm 10.0 將消費級 GPU 支援擴展至：</p>
+<ul>
+<li><strong>AMD Radeon RX 9050 (gfx1200)</strong></li>
+<li><strong>AMD Radeon RX 9050 (4GB) (gfx1200)</strong></li>
+</ul>
+<p>這意味著更多開發者可以使用消費級 GPU 進行 AI 開發與推論，降低硬體門檻。</p>
+<h3 id="instinct-虛擬化擴展">Instinct 虛擬化擴展</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>裝置</th><th>支援場景</th><th>說明</th></tr></thead><tbody><tr><td><strong>MI355X / MI350X</strong></td><td>Ubuntu 22.04 host → Ubuntu 22.04 guest（Passthrough）</td><td>支援 MxGPU 多租户環境</td></tr><tr><td><strong>MI350P</strong></td><td>ESXi 9.1 → Ubuntu 24.04 guest（Passthrough）</td><td>VMware 虛擬化環境支援</td></tr></tbody></table>
+<h3 id="gpu-分割partitioning">GPU 分割（Partitioning）</h3>
+<p>ROCm 10.0 維持 7.14 的分割支援，並強化 MxGPU 多租户能力，讓單一 GPU 可分割給多個虛擬機器使用，提升資料中心資源利用率。</p>
+<hr>
+<h2 id="技術亮點深度解析">技術亮點深度解析</h2>
+<h3 id="ai-推論框架支援">AI 推論框架支援</h3>
+<p>ROCm 10.0 支援以下最新版本的 AI 框架：</p>
+<ul>
+<li><strong>PyTorch 2.13.0</strong>：最新穩定版，支援更多新架構</li>
+<li><strong>JAX 0.11.0 / 0.10.2</strong>：科學計算與 ML 框架</li>
+<li><strong>vLLM 0.27.0</strong>：高效能 LLM 推論引擎</li>
+</ul>
+<h3 id="hip-功能增強">HIP 功能增強</h3>
+<p>HIP 是 ROCm 的 CUDA 相容層，10.0 版本帶來以下重要增強：</p>
+<ul>
+<li><strong>hipEventRecord 效能提升</strong>：使用 <code>hipEventDisableTiming</code> 避免不必要的 profiling 開銷</li>
+<li><strong>cooperative_groups 掃描支援</strong>：新增 <code>inclusive_scan</code> 和 <code>exclusive_scan</code> API</li>
+<li><strong>ROCr Runtime core dump 支援</strong>：attached debuggers 可產生 core dump，方便問題診斷</li>
+</ul>
+<h3 id="rocprofiler-sdk-功能升級">ROCprofiler-SDK 功能升級</h3>
+<p>ROCprofiler-SDK 是 ROCm 的效能分析工具，10.0 版本新增：</p>
+<ul>
+<li><strong>rocSHMEM API tracing</strong>：支援 <code>rocshmem_putmem_on_stream</code>、<code>rocshmem_getmem_on_stream</code>、<code>rocshmem_alltoallmem_on_stream</code></li>
+<li><strong>hipFile tracing</strong>：檔案 I/O 操作可納入 profiling 時間軸</li>
+<li><strong>OpenMP (OMPT) tracing</strong>：<code>--ompt-trace</code> 旗標支援</li>
+<li><strong>HIP Graph per-node attribution</strong>：每個圖節點的時間與計數器聚合</li>
+<li><strong>SPM ROCpd output 支援</strong>：Streaming Performance Monitor 計數器資料</li>
+</ul>
+<p>沅品技術團隊觀點：<strong>「ROCprofiler-SDK 的增強讓開發者可以更精確地定位效能瓶頸，特別是 HIP Graph per-node attribution 功能，對於優化大型 AI 模型推論流程非常有用。」</strong></p>
+<h3 id="通訊庫更新">通訊庫更新</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>通訊庫</th><th>更新內容</th></tr></thead><tbody><tr><td><strong>Composable Kernel</strong></td><td>a8w8 GEMM 效能提升</td></tr><tr><td><strong>rocFFT</strong></td><td>多 GPU RCCL backend 支援</td></tr><tr><td><strong>RCCL</strong></td><td>對稱記憶體支援更新</td></tr><tr><td><strong>hipSPARSE / rocSPARSE</strong></td><td>Blocked ELL 格式支援、CSC 格式稀疏三角求解、SpMV nnz-split 算法、SpMM 算法選擇優化</td></tr></tbody></table>
+<hr>
+<h2 id="breaking-changes不相容變更">Breaking Changes（不相容變更）</h2>
+<p>ROCm 10.0 帶來一些破壞性變更，升級前必須注意：</p>
+<h3 id="amd-smi-apiabi-破壞性變更">AMD SMI API/ABI 破壞性變更</h3>
+<ul>
+<li><strong>Library SONAME 變更</strong>：<code>libamd_smi.so.26</code> → <code>libamd_smi.so.27</code></li>
+<li><strong>amdsmi_gpu_metrics_t 欄位類型擴展</strong>：<code>uint32_t</code> → <code>uint64_t</code>
+<ul>
+<li><code>gfx_activity_acc</code></li>
+<li><code>mem_activity_acc</code></li>
+<li><code>pcie_nak_sent_count_acc</code></li>
+<li><code>pcie_nak_rcvd_count_acc</code></li>
+<li><code>pcie_lc_perf_other_end_recovery</code></li>
+</ul>
+</li>
+<li><strong>已移除 APIs</strong>：需重新編譯</li>
+<li><strong>已移除 Python 輸出欄位</strong>：API 簽章變更</li>
+<li><strong>已棄用 APIs</strong>：ROCm 10.0 仍支援，未來版本將移除</li>
+</ul>
+<blockquote>
+<p>💡 <strong>關鍵洞察</strong>：對於依賴 AMD SMI API 的監控工具（如 Prometheus exporter、自訂腳本），升級後需要重新編譯或更新，否則可能無法正常運作。</p>
+</blockquote>
+<hr>
+<h2 id="已知問題清單">已知問題清單</h2>
+<p>ROCm 10.0 目前存在以下已知問題，開發者需留意：</p>
+<ul>
+<li>HuggingFace 模型訓練吞吐量可能在 MI350X 下降</li>
+<li>JAX BERT FP16 訓練可能在某些 Radeon GPU 上遇到 segmentation fault</li>
+<li>PyTorch 訓練和微調工作負載可能在某些 Radeon GPU 上遇到 GPU reset 或 crash</li>
+<li>SGLang 推論可能在某些 Radeon GPU 上失敗（預設 AITER attention backend）</li>
+<li>TensorFlow ROCm v2.21 可能在某些 Radeon GPU 上無法啟動（libhipsparse ImportError）</li>
+<li>vLLM 或 ComfyUI 工作負載可能在某些 Ryzen AI 系統上 crash</li>
+</ul>
+<p>沅品技術團隊建議：<strong>「在生產環境部署 ROCm 10.0 前，務必在自己的硬體環境上進行完整測試，特別是針對使用的 AI 框架和工作負載。」</strong></p>
+<hr>
+<h2 id="升級路徑與實務建議">升級路徑與實務建議</h2>
+<h3 id="是否支援原地升級">是否支援原地升級？</h3>
+<p><strong>不支援</strong>。官方明確指出：</p>
+<blockquote>
+<p>“No upgrade path from existing production releases.”</p>
+</blockquote>
+<p>從 7.x 跳到 10.0 是大版本跨越，需<strong>先完整移除 7.14，再乾淨安裝 10.0</strong>。</p>
+<h3 id="完整移除流程">完整移除流程</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 1. 官方移除主要套件</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> amdgpu-uninstall</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 2. 移除安裝程式與 repository</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt</span><span style="color:#9ECBFF"> purge</span><span style="color:#9ECBFF"> amdgpu-install</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt</span><span style="color:#9ECBFF"> autoremove</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 3. 手動清理殘留（已知問題）</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt-get</span><span style="color:#9ECBFF"> purge</span><span style="color:#9ECBFF"> rocm-bandwidth-test</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 4. 重開機</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> reboot</span></span>
+<span class="line"></span></code></pre>
+<h3 id="驗證乾淨移除">驗證乾淨移除</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">dpkg</span><span style="color:#79B8FF"> -l</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> grep</span><span style="color:#9ECBFF"> rocm</span></span>
+<span class="line"><span style="color:#B392F0">dnf</span><span style="color:#9ECBFF"> list</span><span style="color:#9ECBFF"> installed</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> grep</span><span style="color:#9ECBFF"> rocm</span></span>
+<span class="line"></span></code></pre>
+<h3 id="安裝-100-注意事項">安裝 10.0 注意事項</h3>
+<ul>
+<li>使用 TheRock 架構下的新 repo 路徑</li>
+<li>參考 <a href="https://rocm.docs.amd.com/en/latest/install/rocm.html">ROCm 10.0 安裝指南</a></li>
+<li>llama.cpp 可能需要重新編譯（HIP 版本不同）</li>
+<li>建議保留 models.ini 備份</li>
+</ul>
+<hr>
+<h2 id="硬體支援清單">硬體支援清單</h2>
+<h3 id="amd-instinct-系列">AMD Instinct 系列</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>系列</th><th>裝置</th><th>LLVM target</th><th>架構</th></tr></thead><tbody><tr><td>MI350</td><td>MI355X, MI350X, MI350P</td><td>gfx942</td><td>CDNA4</td></tr><tr><td>MI300</td><td>MI300X, MI300A</td><td>gfx942</td><td>CDNA3</td></tr><tr><td>MI200</td><td>MI250X, MI250, MI210</td><td>gfx90a</td><td>CDNA2</td></tr></tbody></table>
+<h3 id="radeon-消費級">Radeon 消費級</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>系列</th><th>裝置</th><th>LLVM target</th><th>架構</th></tr></thead><tbody><tr><td>RX 9000</td><td>RX 9050</td><td>gfx1200</td><td>RDNA4</td></tr><tr><td>RX 7000</td><td>RX 7900 XTX, RX 7900 XT</td><td>gfx942</td><td>RDNA3</td></tr></tbody></table>
+<hr>
+<h2 id="未來路線圖">未來路線圖</h2>
+<p>AMD 已明確指出 ROCm 未來的發展方向：</p>
+<ul>
+<li><strong>六週發布週期</strong>：新功能快速迭代</li>
+<li><strong>SPIR-V IR 推廣</strong>：跨架構中間表示層</li>
+<li><strong>模組化生態</strong>：component-level integration、nightly/weekly builds</li>
+<li><strong>Windows 支援擴展</strong>：ComfyUI Desktop 已支援 ROCm 7.1.1</li>
+</ul>
+<p>沅品技術團隊觀點：<strong>「ROCm 的模組化生態系正在逐步成型，這將讓企業可以更靈活地選擇需要的組件，降低升級成本和風險。」</strong></p>
+<hr>
+<h2 id="對實務應用的影響">對實務應用的影響</h2>
+<h3 id="對-llm-推論llamacpp">對 LLM 推論（llama.cpp）</h3>
+<ul>
+<li>GPU 分割功能對多載環境有幫助</li>
+<li>需注意 HIP 版本變更可能影響編譯</li>
+<li>建議保留 models.ini 備份</li>
+</ul>
+<h3 id="對開發者">對開發者</h3>
+<ul>
+<li>新 repo 結構與安裝方式</li>
+<li>API/ABI 破壞性變更需要适配</li>
+<li>六週更新節奏帶來更快的功能迭代</li>
+</ul>
+<hr>
+<h2 id="參考連結">參考連結</h2>
+<ul>
+<li><a href="https://rocm.docs.amd.com/en/latest/about/release-notes.html">ROCm 10.0 發布說明</a></li>
+<li><a href="https://rocm.docs.amd.com/en/latest/transition-guide.html">Transition Guide</a></li>
+<li><a href="https://github.com/ROCm/TheRock">TheRock 構建系統</a></li>
+<li><a href="https://github.com/ROCm/ROCm/releases">ROCm GitHub Releases</a></li>
+</ul>
+<hr>
+<p><em>本文基於 AMD 官方文件與社群資訊整理，規格與功能以官方最新公告為準。</em></p> </div> <div class="article-footer-nav" data-astro-cid-vcwz2lde> <a href="/news" class="back-link" data-astro-cid-vcwz2lde> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-vcwz2lde><path d="m15 18-6-6 6-6" data-astro-cid-vcwz2lde></path></svg>
+回到最新消息列表
+</a> <a href="/#inquiry" class="btn btn-primary" data-astro-cid-vcwz2lde>立即預約諮詢服務</a> <a href="/" class="back-link" data-astro-cid-vcwz2lde>
+回到首頁
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-vcwz2lde><path d="m9 18 6-6-6-6" data-astro-cid-vcwz2lde></path></svg> </a> </div> </div> </div> </article> <footer id="footer"> <div class="container"> <div class="footer-grid"> <div class="footer-col"> <h4>InfoSecure 沅品科技有限公司</h4> <p>專業系統整合商，致力於提供最完善的 IT 基礎架構解決方案。</p> </div> <div class="footer-col"> <h4>解決方案</h4> <ul> <li><a href="/#solutions">虛擬化及超融合架構規劃建置</a></li> <li><a href="/#solutions">網路資安規劃</a></li> <li><a href="/#solutions">資料儲存備份備援</a></li> <li><a href="/#solutions">資料安全及端點防護</a></li> </ul> </div> <div class="footer-col"> <h4>聯絡資訊</h4> <ul> <li>電話：04-22465110</li> <li>信箱：sales@infosecure.com.tw</li> <li>地址：臺中市北屯區文心路四段750-9號10樓</li> </ul> </div> </div> <div class="copyright"> <p>© 2026 InfoSecure Technology Co., Ltd. All Rights Reserved.</p> </div> </div> </footer> <div class="back-to-top" id="backToTop" title="返回頂部" data-astro-cid-vcwz2lde> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" data-astro-cid-vcwz2lde><path d="m18 15-6-6-6 6" data-astro-cid-vcwz2lde></path></svg> </div>  </body></html>  
