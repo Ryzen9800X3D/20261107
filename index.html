@@ -349,7 +349,7 @@ const IMG={
 
 const DAYS=[
  {no:1,date:"11/07",wd:"六",title:"復興區山林瀑布與大溪茶香",img:IMG.d1,
-  route:"11/06 晚先到韋廷家（龍潭文化路 1142 巷 6 號）休息，11/07 早上從韋廷家出發，開瀚凱的 RAV4 往復興區，全程順暢。晚餐後回韋廷家過夜。",
+  route:"從韋廷家（龍潭文化路 1142 巷 6 號）出發，開瀚凱的 RAV4 往復興區，全程順暢。晚餐後回韋廷家過夜。",
   items:[
   {t:"09:30-11:30",cat:"hike",name:"高海拔森林浴｜東眼山國家森林遊樂區",desc:"走平緩的景觀步道，拿起望遠鏡觀察茂密柳杉林間的生態，享受舒適微涼的氣溫。",addr:"復興區霞雲里成福路 600 號",lat:24.8578,lng:121.2664},
   {t:"12:00-13:00",cat:"food",name:"在地午餐｜角板山形象商圈",desc:"廟口王家小吃（中正路 85 號，★4.7）、角板山平價小吃（中正路 51 號）。品嚐在地段木香菇與原民風味。",addr:"復興區澤仁里中正路周邊",lat:24.8327,lng:121.2333},
@@ -357,7 +357,7 @@ const DAYS=[
   {t:"15:30-16:30",cat:"rest",name:"室內休憩｜大溪老茶廠",desc:"下山順路停靠，在充滿茶香的百年建築冷氣房內讓雙腿放鬆。",addr:"大溪區新峰里復興路二段 732 巷 80 號",lat:24.8866,lng:121.2842},
   {t:"17:30-19:30",cat:"food",name:"龍潭晚餐｜與韋廷的家庭聚餐",desc:"【晚餐三選一】<br>1. <a href=\"https://www.google.com/maps/search/The畔+cafe+dining+龍潭\" target=\"_blank\">The畔 cafe&dining</a>（金龍路 8 巷 22 號，★4.6）<br>2. <a href=\"https://www.google.com/maps/search/見山景觀咖啡餐廳+龍潭\" target=\"_blank\">見山景觀咖啡餐廳</a>（楊銅路二段 719 號，★4.9）<br>3. <a href=\"https://www.google.com/maps/search/大池Front+景觀+BISTRO+Cafe+龍潭\" target=\"_blank\">大池 Front 景觀 BISTRO&Cafe</a>（中豐路上林段 115 巷 11 號 2 樓，★4.8）<br>選定後可直接導航前往。",addr:"龍潭區晚餐地點",lat:24.8599,lng:121.2510}
   ],
-  tip:"晚餐後回韋廷家過夜，11/08 早上從韋廷家出發前往桃園市區。"},
+  tip:"晚餐後回韋廷家過夜。"},
  {no:2,date:"11/08",wd:"日",title:"虎頭山 × 桃園市區的城市綠洲",img:IMG.d2,
    route:"從韋廷家（龍潭）出發，開瀚凱的 RAV4 往龜山虎頭山，午餐後南下桃園市區逛神社，晚餐在火車站旁吃石田一龍拉麵。",
    items:[
@@ -389,6 +389,7 @@ const BACKUPS=[
   route:"韋廷家（龍潭）→ IKEA 桃園店（09:30）→ 大江購物中心午餐（12:00）→ 桃園市立圖書館新總館（14:00）→ 石田一龍拉麵（18:00）"}
 ];
 function dayCard(d){
+ const backupItems=BACKUPS.find(b=>b.no===d.no);
  const hasBackup=backupItems&&backupItems.items.length>0;
 
  function buildItems(items){
@@ -430,7 +431,7 @@ function switchDay(dayNo, mode){
  const origHtml=dayEl.getAttribute('data-orig-html');
  const backup=BACKUPS.find(b=>b.no===dayNo);
  if(mode==='backup'&&backup){
-  const backupItems=backup.items.map(it=>({t:'—',cat:'backup',name:`${it.orig} → ${it.alt}`,desc:it.detail,addr:''}));
+  backupItems=backup.items;
   const backupHtml=backupItems.map(it=>{
    return `<li><div class="tm">${it.t}</div><div class="what"><span class="cat ${it.cat}">${CATNAME[it.cat]}</span><b>${it.name}</b><div>${it.desc}</div></li>`;
   }).join('');
