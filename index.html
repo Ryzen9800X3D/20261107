@@ -184,6 +184,7 @@ img{max-width:100%}
 <a href="#d1">D1 復興區</a>
 <a href="#d2">D2 桃園市區</a>
 <a href="#food">餐廳清單</a>
+<a href="#backup">🌀 颱風備案</a>
 </div>
 </div></nav>
 
@@ -196,6 +197,7 @@ img{max-width:100%}
 <a href="#d1" onclick="closeDrawer()">D1 復興區 <span class="ddate">11/07</span></a>
 <a href="#d2" onclick="closeDrawer()">D2 桃園市區 <span class="ddate">11/08</span></a>
 <a href="#food" onclick="closeDrawer()">餐廳清單</a>
+<a href="#backup" onclick="closeDrawer()">🌀 颱風備案</a>
 </div>
 
 <header class="hero"><div class="container">
@@ -287,9 +289,27 @@ img{max-width:100%}
 </div>
 </div></section>
 
+<!-- 颱風備案 -->
+<section id="backup"><div class="container">
+<div class="sec-title"><span class="no">03</span><h2>🌀 颱風天備案</h2></div>
+<p class="sec-sub">當中央氣象署發布陸上颱風警報，或單日降雨機率 &gt; 70% 時啟動備案。所有備案皆為 <b>室內／半室內</b> 景點，動線與原行程一致。</p>
+
+<div class="emergency" style="margin-bottom:24px">
+<h3>🚨 啟動時機</h3>
+<table>
+<tr><th>時機</th><th>行動</th></tr>
+<tr><td>陸上颱風警報發布</td><td>直接啟動 <b>全日備案</b></td></tr>
+<tr><td>當日降雨機率 &gt; 70% 或中大雨</td><td>替換該項 <b>戶外活動</b></td></tr>
+<tr><td>山區道路積水／落石封閉</td><td>取消該區域行程，改市區備案</td></tr>
+</table>
+</div>
+
+<div id="backuplist"></div>
+</div></section>
+
 <!-- 行前檢查 -->
 <section id="checklist"><div class="container">
-<div class="sec-title"><span class="no">03</span><h2>行前檢查清單</h2></div>
+<div class="sec-title"><span class="no">04</span><h2>行前檢查清單</h2></div>
 <div class="gear">
 <div class="g"><b>📱 出發前 3 天</b>查詢中央氣象署颱風動態</div>
 <div class="g"><b>📱 出發前 1 天</b>確認陸上警報是否解除</div>
@@ -337,6 +357,24 @@ const DAYS=[
    ],
    tip:"虎頭山公園和土雞城都在虎頭山，下山直接吃午餐，完全順路。下午南下桃園市區逛神社，晚餐在火車站旁吃石田一龍拉麵，晚餐後送賀百和家禎至高鐵桃園站。",
  },
+];
+
+/* Typhoon backup data */
+const BACKUPS=[
+ {no:1,title:"D1 復興區・大溪區備案",
+  items:[
+   {orig:"東眼山國家森林遊樂區",alt:"大溪木藝生態博物館",detail:"📍 大溪區和平路二段 36 號 ｜ 🕘 09:00–17:00 ｜ 免費 ｜ 日治警察宿舍群，木器工藝展＋咖啡廳"},
+   {orig:"角板山形象商圈午餐",alt:"角板山行館＋景觀餐廳",detail:"📍 復興區中正路 209 號 ｜ 🕘 09:00–17:00 ｜ 免費 ｜ 蔣介石行館建築（需預約）"},
+   {orig:"小烏來天空步道",alt:"金蘭醬油觀光工廠",detail:"📍 大溪區仁武里仁美街 2 之 1 號 ｜ 🕘 09:00–17:00 ｜ 免費 ｜ 醬油釀造展示＋DIY NT$150"}
+  ],
+  route:"韋廷家（龍潭）→ 大溪木藝生態博物館（09:30）→ 角板山行館＋午餐（12:00）→ 金蘭醬油觀光工廠（13:30）→ 大溪老街散步（15:00）→ 大溪老茶廠（16:00）→ 龍潭晚餐（17:30）"},
+ {no:2,title:"D2 桃園市區備案",
+  items:[
+   {orig:"虎頭山公園",alt:"IKEA 桃園店",detail:"📍 龜山區復興一路 600 號 ｜ 🕘 10:00–21:00 ｜ 免費 ｜ 逛賣場＋樓上餐廳午餐"},
+   {orig:"虎頭山土雞城",alt:"大江國際購物中心",detail:"📍 中壢區中大路 200 號 ｜ 🕘 11:00–22:00 ｜ 免費 ｜ 美食街＋餐廳樓層"},
+   {orig:"桃園神社（半戶外）",alt:"桃園市立圖書館新總館",detail:"📍 桃園區南平路 263 號 ｜ 🕘 09:00–21:00 ｜ 免費 ｜ 蔦屋書店＋星巴克＋閱讀空間"}
+  ],
+  route:"韋廷家（龍潭）→ IKEA 桃園（09:30）→ 大江購物中心午餐（12:00）→ 桃園市立圖書館新總館（14:00）→ 高鐵桃園站接人（15:00）→ 回韋廷家（17:00）→ 出發回家（17:30）"}
 ];
 function dayCard(d){
 
